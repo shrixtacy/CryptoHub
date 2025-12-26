@@ -1,7 +1,46 @@
 # CryptoHub
+<div align="center">
+
+  <img src="./src/assets/CryptoHub.png" alt="CryptoHub Preview" width="100%">
+  
+  [![Live Demo](https://img.shields.io/badge/Live-Demo-7927ff?style=for-the-badge)](https://crypto-hub-rosy.vercel.app)
+  [![GitHub Stars](https://img.shields.io/github/stars/KaranUnique/CryptoHub?style=for-the-badge&logo=github)](https://github.com/KaranUnique/CryptoHub/stargazers)
+  [![GitHub Forks](https://img.shields.io/github/forks/KaranUnique/CryptoHub?style=for-the-badge&logo=github)](https://github.com/KaranUnique/CryptoHub/network/members)
+  [![License](https://img.shields.io/badge/License-MIT-2193b0?style=for-the-badge)](LICENSE)
+</div>
+
+<br>
+
 
 A modern, beginner-friendly cryptocurrency dashboard built with React and Vite.  
 CryptoHub allows users to track real-time crypto prices, analyze coins with charts, and explore crypto-related content—all in one place.
+
+---
+
+## 📑 Table of Contents
+
+- [🎯 Who Is This Project For?](#-who-is-this-project-for)
+- [🌟 Key Features](#-key-features)
+- [📄 Pages](#-pages)
+- [🚀 Getting Started (Local Setup)](#-getting-started-local-setup)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+  - [❗ Common Issues](#-common-issues)
+  - [Build for Production](#build-for-production)
+- [🛠️ Tech Stack](#️-tech-stack)
+- [📁 Project Structure](#-project-structure)
+- [🤝 Contributing](#-contributing)
+  - [How to Contribute](#how-to-contribute)
+  - [Development Guidelines](#development-guidelines)
+  - [Areas We're Looking For](#areas-were-looking-for)
+- [📋 Code of Conduct](#-code-of-conduct)
+- [👨‍💼 Project Leadership](#-project-leadership)
+- [📄 License](#-license)
+- [🔗 Deployment](#-deployment)
+  - [Deploy to Vercel (Recommended)](#deploy-to-vercel-recommended)
+- [📞 Support & Contact](#-support--contact)
+
+---
 
 ## 🎯 Who Is This Project For?
 
@@ -13,10 +52,11 @@ This project is ideal for beginners who want to learn React, APIs, and open-sour
 - 📈 Interactive price charts (powered by Victory)
 - 🔍 Search and filter cryptocurrencies
 - 💱 Multi-currency support (USD, EUR, INR)
+- 🌙 Dark/Light theme toggle with localStorage persistence
 - 📰 Educational blog with crypto guides
 - 💡 Feature updates and announcements
 - 💰 Pricing page with sample plans
-- 🌙 Modern glassmorphic UI with dark theme
+- 🎨 Modern glassmorphic UI with smooth transitions
 - 📱 Fully responsive design for mobile and desktop
 
 ## 📄 Pages
@@ -38,27 +78,27 @@ Before starting, make sure you have:
 ### Installation
 
 1. **Clone the repository:**
-   ```sh
+```sh
    git clone https://github.com/KaranUnique/CryptoHub.git
    cd CryptoHub
-   ```
+```
 
 2. **Install dependencies:**
-   ```sh
+```sh
    npm install
-   ```
+```
 
 3. **Set up environment variables:**
    Create a `.env` file in the project root:
-   ```
+```
    VITE_CG_API_KEY=your-coingecko-api-key
-   ```
+```
    Get your free API key from [CoinGecko API](https://www.coingecko.com/en/api)
 
 4. **Start the development server:**
-   ```sh
+```sh
    npm run dev
-   ```
+```
 
 5. **Open in your browser:**
    Visit [http://localhost:5173](http://localhost:5173)
@@ -66,7 +106,7 @@ Before starting, make sure you have:
 ### ❗ Common Issues
 
 - If `npm install` fails, make sure Node.js is installed correctly.
-- If the app doesn’t load, check that the API key is added correctly in the `.env` file.
+- If the app doesn't load, check that the API key is added correctly in the `.env` file.
 - Restart the dev server after changing environment variables.
 
 ### Build for Production
@@ -81,10 +121,10 @@ npm run build
 - **Charts:** Victory
 - **API:** CoinGecko (free)
 - **Styling:** Modern CSS (Glassmorphism, Gradients)
+- **Theme:** Dark/Light mode with localStorage
 - **Deployment:** Vercel
 
 ## 📁 Project Structure
-
 ```
 CryptoHub/
 ├── public/
@@ -135,23 +175,23 @@ No prior open-source experience is required to contribute to this project.
 
 1. **Fork the repository** by clicking the "Fork" button at the top-right of this page
 2. **Clone your fork:**
-   ```sh
+```sh
    git clone https://github.com/your-username/CryptoHub.git
    cd CryptoHub
-   ```
+```
 3. **Create a new branch** for your feature or fix:
-   ```sh
+```sh
    git checkout -b feature/your-feature-name
-   ```
+```
 4. **Make your changes** and test thoroughly
 5. **Commit your changes** with a clear message:
-   ```sh
+```sh
    git commit -m "Add your feature description"
-   ```
+```
 6. **Push to your fork:**
-   ```sh
+```sh
    git push origin feature/your-feature-name
-   ```
+```
 7. **Open a Pull Request** on the main repository with a clear description of your changes
 
 ### Development Guidelines
@@ -205,3 +245,9 @@ For questions or issues, please:
 ---
 
 **Happy coding! 🚀 Together, let's build the future of crypto dashboards!**
+
+---
+
+## ⭐ Show Your Support
+
+If you find this project helpful, please give it a ⭐️ on GitHub!
