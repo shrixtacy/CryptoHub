@@ -55,7 +55,7 @@ export default function Pricing() {
                 <li key={i}>✔ {feature}</li>
               ))}
             </ul>
-            <button>
+            <button class="pricing-button">
               {plan.name === "Free" ? "Start for Free" : "Get Started"}
             </button>
           </div>
