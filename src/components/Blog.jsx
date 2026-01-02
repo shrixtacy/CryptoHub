@@ -40,14 +40,13 @@ export default function Blog() {
 
   return (
     <div className="blog-page">
-      <div className="blog-title">CryptoHub Blog</div>
-      <p className="blog-desc">
+      <div data-aos="fade-in" className="blog-title">CryptoHub Blog</div>
+      <p data-aos="zoom-out" className="blog-desc">
         Insights, practical guides, and helpful tips for everyone who is interested in learning about cryptocurrency and understanding how the crypto world works.
-
       </p>
       <div className="blog-list">
         {blogPosts.map((post, idx) => (
-          <div className="blog-card" 
+          <div data-aos={idx % 2 === 0 ? "fade-right" : "fade-left"} className="blog-card" 
           key={idx}
           onClick={() => navigate(`/blog/${idx}`)}
           style={{ cursor: "pointer" }}

@@ -34,11 +34,11 @@ const Home = () => {
   return (
     <div className="home">
       <div className="hero">
-        <h1 className="hero-title">Discover & Track Crypto Instantly</h1>
-        <p className="hero-sub">
+        <h1 data-aos="fade-in" className="hero-title">Discover & Track Crypto Instantly</h1>
+        <p data-aos="fade-in" className="hero-sub">
           Welcome to CryptoHub — your gateway to real-time prices, trending coins, and powerful analytics. Search any coin and start exploring the world of crypto!
         </p>
-        <form className="hero-form" onSubmit={searchHandler} autoComplete="off">
+        <form data-aos="zoom-in" className="hero-form" onSubmit={searchHandler} autoComplete="off">
           <input
             onChange={inputHandler}
             list="coinlist"
@@ -54,7 +54,7 @@ const Home = () => {
         </form>
       </div>
       <div className="crypto-table">
-        <div className="table-layout">
+        <div data-aos="fade-up" className="table-layout">
           <p>#</p>
           <p>Coins</p>
           <p>Price</p>
@@ -64,7 +64,10 @@ const Home = () => {
         {displayCoin.slice(0, visibleCount).map((item, index) => (
           <Link
             to={`/coin/${item.id}`}
-            className="table-layout" key={index}>
+            className="table-layout"
+            key={index} 
+            data-aos="fade-up"
+          >
             <p>{item.market_cap_rank}</p>
             <div>
               <img src={item.image}></img>

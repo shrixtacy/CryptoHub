@@ -55,7 +55,7 @@ function Login() {
 
   return (
     <div className="auth-container">
-      <div className="auth-card">
+      <div data-aos="zoom-in" className="auth-card">
         <div className="auth-header">
           <h1 className="auth-title">Welcome Back</h1>
           <p className="auth-subtitle">

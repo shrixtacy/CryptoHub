@@ -67,7 +67,7 @@ function Signup() {
 
   return (
     <div className="auth-container">
-      <div className="auth-card signup-card">
+      <div data-aos="zoom-in" className="auth-card signup-card">
         <div className="auth-header">
           <h1 className="auth-title">Create Account</h1>
           <p className="auth-subtitle">

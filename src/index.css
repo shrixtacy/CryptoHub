@@ -27,17 +27,16 @@ body[data-theme="light"] .app {
   color: #000000 !important;
 }
 
-body[data-theme="light"] *:not(.signup-btn):not(.hero-form button):not(.hero button) {
+body[data-theme="light"] *:not(.signup-btn):not(.hero-form button):not(.hero button):not(.price):not(.pricing-button):not(.login-btn):not(.blog-desc){
   color: #000000 !important;
 }
 
 body[data-theme="light"] .home,
-body[data-theme="light"] .pricing,
 body[data-theme="light"] .blog,
 body[data-theme="light"] .features,
 body[data-theme="light"] section,
 body[data-theme="light"] main,
-body[data-theme="light"] div {
+body[data-theme="light"] div:not(.price) {
   background: transparent !important;
 }
 

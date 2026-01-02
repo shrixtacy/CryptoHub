@@ -65,7 +65,7 @@ const Coin = () => {
 
   return (
     <div className="coin">
-      <div className="coin-left">
+      <div data-aos="fade-right" className="coin-left">
         <img className="coin-logo" src={coindata?.image?.large} alt={coindata?.name} />
         <div className="coin-name-below">
           {coindata?.name}
@@ -75,7 +75,7 @@ const Coin = () => {
           <LineChart historicaldata={historicaldata} />
         </div>
       </div>
-      <div className="coin-right">
+      <div data-aos="fade-left" className="coin-right">
         <div className="coin-info">
           <ul>
             <li>Crypto Market Rank</li>
