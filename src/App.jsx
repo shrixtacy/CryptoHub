@@ -22,6 +22,7 @@ import "aos/dist/aos.css";
 import { CoinContext } from "./context/CoinContext";
 import LoadingSpinner from "./components/LoadingSpinner";
 import { Toaster } from "react-hot-toast";
+import ScrollToTop from "./components/ScrollToTop";
 
 
 const App = () => {
@@ -107,6 +108,7 @@ const App = () => {
               </Routes>
                 {!isDashboard && <Footer />}
               </div>
+              <ScrollToTop />
           </AuthProvider>
         </ThemeProvider>
    </>
