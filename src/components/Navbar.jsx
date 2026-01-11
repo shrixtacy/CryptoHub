@@ -57,14 +57,14 @@ function Navbar() {
   ];
 
   return (
-    <nav className={`navbar ${scrolled ? "scrolled" : ""} ${isMobileMenuOpen ? "has-mobile-menu" : ""}`}>
+    <nav className={`navbar ${scrolled ? "scrolled" : ""} ${isMobileMenuOpen ? "has-mobile-menu" : ""} ${isDashboardPage ? "is-dashboard" : ""}`}>
       <div className="navbar-content">
         {/* Brand/Logo Section */}
-        <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
+        <Link to="/" className="navbar-logo">
           <div className="navbar-logo-icon">
             <img src="/crypto-logo.png" alt="CryptoHub" className="logo-img" />
           </div>
-          CryptoHub
+          <span className="logo-text">CryptoHub</span>
         </Link>
 
         {/* Desktop Navigation Menu */}
@@ -123,6 +123,18 @@ function Navbar() {
             <span></span>
           </button>
         </div>
+
+        {/* Mobile Auth Buttons (only in mobile menu) */}
+        {isMobileMenuOpen && !currentUser && !isDashboardPage && (
+          <div className="mobile-auth">
+            <Link to="/login" className="navbar-btn navbar-btn-login" onClick={closeMobileMenu}>
+              LOGIN
+            </Link>
+            <Link to="/signup" className="navbar-btn navbar-btn-signup" onClick={closeMobileMenu}>
+              Get Started
+            </Link>
+          </div>
+        )}
       </div>
     </nav>
   );

@@ -39,14 +39,15 @@
 }
 
 /* Navbar Content Container */
+/* FORCE proper layout */
 .navbar-content {
-  max-width: 1400px;
-  margin: 0 auto;
-  display: flex;
+  display: grid;
+  grid-template-columns: auto 1fr auto; /* logo | menu | actions */
   align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
+  gap: 3px !important;
+  width: 100%;
 }
+
 
 /* Logo/Brand */
 .navbar-logo {
@@ -97,11 +98,12 @@
 .navbar-menu {
   display: none;
   flex-direction: column;
-  gap: 0;
   list-style: none;
-  flex: 1;
-  max-width: none;
+  gap: 0;               /* items ke beech extra gap remove */
+  padding: 0;           /* ul default padding remove */
+  margin: 0;
 }
+
 
 .navbar-menu.active {
   display: flex;
@@ -159,13 +161,14 @@
 .navbar-actions {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 1.25rem; /* Increased from 1rem for better spacing */
   flex-shrink: 0;
+  margin-left: auto; /* Push to the right */
 }
 
 /* Action Buttons */
 .navbar-btn {
-  padding: 0.6rem 1.2rem;
+  padding: 0.65rem 1.4rem; /* Increased padding for better proportions */
   border-radius: 8px;
   font-weight: 600;
   font-size: 0.9rem;
@@ -176,12 +179,15 @@
   white-space: nowrap;
   display: inline-block;
   text-align: center;
+  min-width: fit-content; /* Ensure buttons don't shrink too much */
 }
 
 .navbar-btn-login {
   color: #ffffff;
   background: transparent;
   border: 2px solid rgba(255, 255, 255, 0.25);
+  padding: 0.65rem 1.8rem; 
+  margin-right: 7px;
 }
 
 .navbar-btn-login:hover {
@@ -193,6 +199,7 @@
 .navbar-btn-signup {
   background: linear-gradient(135deg, #00f3ff 0%, #b026ff 100%);
   color: #000000;
+  padding: 0.65rem 2rem; /* Wider padding for "Get Started" */
 }
 
 .navbar-btn-signup:hover {
@@ -298,218 +305,126 @@
 }
 
 /* ===================================
-   DEVICE-SPECIFIC RESPONSIVE BREAKPOINTS
+   TABLET & DESKTOP BREAKPOINTS - FIXED
    =================================== */
 
-/* 1. Smallest Phones: Samsung Galaxy S8+ (360px) */
-@media (max-width: 374px) {
-  .navbar {
-    padding: 0.75rem 4%;
-    min-height: 60px;
-  }
-  
-  .navbar.scrolled {
-    padding: 0.5rem 4%;
-    min-height: 55px;
-  }
-  
-  .navbar-logo {
-    font-size: 1rem;
-  }
-  
-  .navbar-logo-icon {
-    width: 32px;
-    height: 32px;
-  }
-  
-  .navbar-toggle {
-    padding: 0.25rem;
-  }
-  
-  .navbar-menu {
-    padding: 0.5rem 0;
-  }
-  
-  .navbar-link {
-    padding: 0.75rem 4%;
-    font-size: 0.9rem;
-  }
-}
-
-/* 2. iPhone SE (375px) */
-@media (min-width: 375px) and (max-width: 389px) {
-  .navbar {
-    padding: 0.75rem 4%;
-    min-height: 62px;
-  }
-  
-  .navbar.scrolled {
-    padding: 0.5rem 4%;
-    min-height: 58px;
-  }
-  
-  .navbar-logo {
-    font-size: 1.1rem;
-  }
-  
-  .navbar-logo-icon {
-    width: 34px;
-    height: 34px;
-  }
-}
-
-/* 3. iPhone 12 Pro (390px) */
-@media (min-width: 390px) and (max-width: 413px) {
-  .navbar {
-    padding: 0.875rem 4%;
-  }
-  
-  .navbar-logo {
-    font-size: 1.15rem;
-  }
-  
-  .navbar-logo-icon {
-    width: 36px;
-    height: 36px;
-  }
-}
-
-/* 4. iPhone XR (414px) & iPhone 14 Pro Max (430px) */
-@media (min-width: 414px) and (max-width: 479px) {
-  .navbar {
-    padding: 1rem 4%;
-    min-height: 66px;
-  }
-  
-  .navbar-logo {
-    font-size: 1.2rem;
-  }
-  
-  .navbar-logo-icon {
-    width: 38px;
-    height: 38px;
-  }
-  
-  .navbar-link {
-    font-size: 1rem;
-  }
-}
-
-/* 5. Small Tablets & Large Phones (480px - 639px) */
-@media (min-width: 480px) and (max-width: 639px) {
-  .navbar {
-    padding: 1.125rem 5%;
-    min-height: 68px;
-  }
-  
-  .navbar-logo {
-    font-size: 1.3rem;
-  }
-  
-  .navbar-logo-icon {
-    width: 40px;
-    height: 40px;
-  }
-  
-  .navbar-link {
-    padding: 0.85rem 1.5rem;
-    font-size: 1.05rem;
-  }
-}
-
-/* 6. Medium Tablets (640px - 767px) - MOBILE MENU */
-@media (min-width: 640px) and (max-width: 767px) {
-  .navbar {
-    padding: 1.25rem 5%;
-    min-height: 70px;
-  }
-  
-  .navbar-logo {
-    font-size: 1.4rem;
-  }
-  
-  .navbar-logo-icon {
-    width: 42px;
-    height: 42px;
-  }
-  
-  .navbar-link {
-    padding: 1rem 2rem;
-    font-size: 1.1rem;
-  }
-}
-
-/* ===================================
-   TABLET & DESKTOP BREAKPOINTS
-   =================================== */
-
-/* Tablet (768px) - Show Desktop Menu */
+/* Tablet (768px) - Show Desktop Menu - FIXED for iPad 768x1024 */
 @media (min-width: 768px) {
-  .navbar-menu {
+   .navbar-menu {
     display: flex;
     flex-direction: row;
-    gap: 0.5rem;
     flex: 1;
-    max-width: 700px;
-    margin: 0 2rem;
+    max-width: 450px; /* REDUCED for tight fit */
+    margin: 0 auto; /* CENTER the menu */
+    gap: 0.4rem; /* VERY TIGHT spacing */
+    justify-content: center;
   }
-
   .navbar-toggle {
     display: none;
   }
 
-  .navbar-item {
+   .navbar-item {
     display: flex;
+    margin: 0;
   }
 
   .navbar-link {
-    padding: 0.5rem 1rem;
-    font-size: 0.95rem;
+    padding: 0.2rem 0.2rem; /* REDUCED padding */
+    font-size: 0.9rem;
+    margin: 0;
   }
 
-  .navbar-actions {
+  .navbar-actions { 
     display: flex;
+    margin-left: 0;
+    gap: 0.8rem; /* Tighter gap between buttons */
   }
   
-  /* 7. iPad Air (820px) & Surface Pro 7 (912px) Portrait */
+  .navbar-btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+  }
+  
+  .navbar-btn-login {
+    padding: 0.5rem 1rem;
+    margin-right: 0.5rem; /* Reduced margin */
+  }
+  
+  .navbar-btn-signup {
+    padding: 0.5rem 1.2rem;
+  }
+  
+   .navbar-link::after {
+    left: 0.6rem;
+    right: 0.6rem;
+  }
+  
+  /* 7. iPad Air (820px) & Surface Pro 7 (912px) Portrait - FIXED for iPad Air 820x1180 */
   @media (min-width: 768px) and (max-width: 1023px) {
-    .navbar-menu {
-      gap: 0.8rem;
-      margin: 0 1rem;
+    .navbar-content {
+      gap: 1.5rem; /* Reduced gap */
+    }
+    
+     .navbar-menu {
+      gap: 0.5rem; /* Tighter spacing */
+      margin: 0 auto;
+      max-width: 500px;
     }
     
     .navbar-link {
-      font-size: 0.9rem;
-      padding: 0.5rem 0.8rem;
+      font-size: 0.85rem;
+      padding: 0.35rem 0.5rem;
+    }
+    
+    .navbar-actions {
+      gap: 0.8rem;
     }
     
     .navbar-btn {
-      padding: 0.5rem 1rem;
-      font-size: 0.85rem;
+      padding: 0.45rem 0.9rem;
+      font-size: 0.8rem;
+    }
+    
+    .navbar-btn-login {
+      padding: 0.45rem 0.9rem;
+      margin-right: 0.5rem;
+    }
+    
+    .navbar-btn-signup {
+      padding: 0.45rem 1.1rem;
     }
     
     .user-email {
-      max-width: 120px;
-      font-size: 0.75rem;
+      max-width: 100px;
+      font-size: 0.7rem;
+    }
+    
+    .user-menu {
+      padding: 6px 10px;
+      gap: 0.6rem;
     }
   }
 }
 
-/* Desktop (1024px+) - Full Desktop Layout */
+/* Desktop (1024px+) - Full Desktop Layout - FIXED */
 @media (min-width: 1024px) {
   .navbar-content {
-    gap: 3rem;
+    gap: 2.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2%;
   }
 
   .navbar-menu {
-    max-width: 800px;
-    margin: 0 3rem;
-    gap: 1.5rem;
+    max-width: 680px; /* 1024px के लिए */
+    margin: 0 auto;
+    gap: 0.8rem; /* Comfortable spacing */
+    justify-content: center;
   }
 
   .navbar-link {
-    padding: 0.5rem 1.2rem;
-    font-size: 1rem;
+    padding: 0.55rem 0.95rem;
+    font-size: 0.95rem;
   }
 
   .navbar-logo {
@@ -521,8 +436,16 @@
   }
 
   .navbar-btn {
-    padding: 0.7rem 1.5rem;
-    font-size: 0.95rem;
+    padding: 0.65rem 1.4rem;
+    font-size: 0.92rem;
+  }
+  
+  .navbar-btn-login {
+    padding: 0.65rem 1.6rem;
+  }
+  
+  .navbar-btn-signup {
+    padding: 0.65rem 1.8rem;
   }
   
   .user-email {
@@ -530,32 +453,80 @@
     font-size: 0.85rem;
   }
   
-  /* 8. iPad Pro (1024px) & Nest Hub (1024x600) */
+  /* iPad Pro (1024px) & Nest Hub (1024x600) - SPECIFIC FIX */
   @media (min-width: 1024px) and (max-width: 1199px) {
+    .navbar-content {
+      max-width: 1100px;
+    }
+    
     .navbar-menu {
-      gap: 2rem;
+      gap: 1rem;
+      max-width: 650px;
     }
     
     .navbar-link {
-      font-size: 1.05rem;
+      font-size: 0.95rem;
+      padding: 0.5rem 0.9rem;
+    }
+    
+    .navbar-actions {
+      gap: 1rem;
     }
   }
 }
 
-/* Large Desktop (1200px+) */
+/* Medium Tablets (853px) - FIXED FOR 853x1280 */
+@media (min-width: 853px) and (max-width: 1023px) {
+  .navbar-content {
+    gap: 2rem;
+  }
+  
+  .navbar-menu {
+    max-width: 650px; /* 853px के लिए perfect */
+    gap: 0.6rem;
+    margin: 0 auto;
+  }
+  
+  .navbar-link {
+    font-size: 0.94rem;
+    padding: 0.5rem 0.85rem;
+  }
+  
+  .navbar-actions {
+    gap: 1rem;
+  }
+  
+  .navbar-btn {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+  }
+  
+  .navbar-btn-login {
+    padding: 0.6rem 1.4rem;
+  }
+  
+  .navbar-btn-signup {
+    padding: 0.6rem 1.6rem;
+  }
+}
+
+/* Large Desktop (1200px+) - FIXED */
 @media (min-width: 1200px) {
   .navbar-content {
-    max-width: 1400px;
+    max-width: 1300px;
+    gap: 3rem;
+    padding: 0 3%;
   }
 
   .navbar-menu {
-    max-width: 850px;
-    margin: 0 4rem;
-    gap: 2.5rem;
+    max-width: 750px;
+    margin: 0 auto;
+    gap: 1.5rem;
   }
 
   .navbar-link {
-    font-size: 1.1rem;
+    padding: 0.6rem 1.1rem;
+    font-size: 1rem;
   }
 
   .navbar-logo {
@@ -567,34 +538,106 @@
     height: 44px;
   }
   
+  .navbar-actions {
+    gap: 1.5rem;
+  }
+  
   .user-email {
     max-width: 180px;
   }
 }
 
-/* Extra Large Desktop (1440px+) */
+/* Extra Large Desktop (1440px+) - FIXED */
 @media (min-width: 1440px) {
   .navbar-content {
-    max-width: 1600px;
+    max-width: 1400px;
+    gap: 3.5rem;
+    padding: 0 4%;
   }
 
   .navbar-menu {
-    max-width: 900px;
-    margin: 0 5rem;
-    gap: 3rem;
+    max-width: 800px;
+    margin: 0 auto;
+    gap: 2rem;
   }
 
   .navbar-link {
-    font-size: 1.15rem;
+    padding: 0.65rem 1.3rem;
+    font-size: 1.05rem;
   }
 
   .navbar-logo {
     font-size: 2rem;
   }
   
+  .navbar-actions {
+    gap: 1.8rem;
+  }
+  
   .user-email {
     max-width: 200px;
     font-size: 0.9rem;
+  }
+}
+
+/* Navbar Content Container - CRITICAL FIX FOR ALL SCREENS */
+.navbar-content {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2%;
+  gap: 0.5rem; /* Minimal gap */
+}
+
+/* Navigation Menu - CENTER ALIGNMENT FIX */
+.navbar-menu {
+  display: none;
+  flex-direction: column;
+  list-style: none;
+  gap: 0;
+  padding: 0;
+  margin: 0;
+  justify-self: center;
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .navbar-menu {
+    display: flex;
+    flex-direction: row;
+    justify-self: center;
+  }
+}
+
+/* Logo stays on left */
+.navbar-logo {
+  justify-self: start;
+  white-space: nowrap;
+}
+
+/* Actions stay on right */
+.navbar-actions {
+  justify-self: end;
+  white-space: nowrap;
+}
+
+/* For very specific tablet sizes - ADDITIONAL FIXES */
+@media (min-width: 820px) and (max-width: 852px) {
+  .navbar-content {
+    gap: 1.5rem;
+  }
+  
+  .navbar-menu {
+    max-width: 600px;
+    gap: 0.5rem;
+  }
+  
+  .navbar-link {
+    padding: 0.48rem 0.75rem;
+    font-size: 0.91rem;
   }
 }
 
@@ -657,6 +700,9 @@
   }
   
   /* Mobile auth buttons will be shown in menu */
+  .navbar-actions {
+    gap: 1rem;
+  }
 }
 
 /* ===================================
@@ -668,6 +714,10 @@
   .navbar {
     min-height: 55px;
     padding: 0.75rem 4%;
+  }
+  
+  .navbar-content {
+    gap: 1.5rem;
   }
   
   .navbar-logo {
@@ -688,6 +738,10 @@
     padding: 0.75rem 2%;
     font-size: 0.95rem;
   }
+  
+  .navbar-actions {
+    gap: 0.8rem;
+  }
 }
 
 /* Portrait mode for tablets */
@@ -699,6 +753,10 @@
   .navbar-link {
     font-size: 0.9rem;
     padding: 0.5rem 0.6rem;
+  }
+  
+  .navbar-actions {
+    gap: 0.9rem;
   }
 }
 
@@ -721,6 +779,10 @@
   
   .navbar-logo {
     font-size: 1.2rem;
+  }
+  
+  .navbar-actions {
+    gap: 1rem;
   }
 }
 
