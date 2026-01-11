@@ -1,199 +1,14 @@
-// import { useTheme } from "../context/ThemeContext";
-// import { useNavigate } from "react-router-dom";
-// import { useState } from "react";
-// import { plans, comparisonFeatures, faqs } from "../data/pricingPlansData";
-// import './Pricing.css';
-// // eslint-disable-next-line no-unused-vars
-// import { motion } from "framer-motion";
-// import { FiCheck, FiX } from "react-icons/fi";
-
-// export default function Pricing() {
-//   const { isDark } = useTheme();
-//   const navigate = useNavigate();
-//   const [billingCycle, setBillingCycle] = useState("monthly");
-//   const [openFaqIndex, setOpenFaqIndex] = useState(null);
-
-//   const handlePlanClick = (planName) => {
-//     if (planName === "Free") {
-//       navigate("/signup");
-//     } else {
-//       alert("💳 Payment Gateway Coming Soon!\n\nWe're working on integrating secure payment options. Stay tuned!");
-//     }
-//   };
-
-//   const containerBg = isDark
-//     ? 'bg-gradient-to-b from-[#0a0a1b] via-[#0f0f23] to-[#0a0a1b]'
-//     : 'bg-gradient-to-b from-gray-50 via-white to-gray-50';
-
-//   const textPrimary = isDark ? 'text-white' : 'text-gray-900';
-//   const textSecondary = isDark ? 'text-gray-400' : 'text-gray-600';
-//   const textTertiary = isDark ? 'text-gray-500' : 'text-gray-600';
-
-//   const cardBg = (popular) => popular
-//     ? isDark
-//       ? 'bg-gradient-to-b from-purple-900/20 to-gray-900/50 border-2 border-purple-500 shadow-2xl shadow-purple-500/20 lg:scale-105'
-//       : 'bg-white border-2 border-purple-500 shadow-2xl lg:scale-105'
-//     : isDark
-//       ? 'bg-gray-900/50 border border-gray-800 hover:border-gray-700 shadow-xl'
-//       : 'bg-white border border-gray-200 hover:border-gray-300 shadow-lg';
-
-//   const buttonBg = (popular) => popular
-//     ? 'bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white shadow-lg shadow-purple-500/30'
-//     : isDark
-//       ? 'bg-gradient-to-r from-gray-700 to-gray-800 hover:from-gray-600 hover:to-gray-700 text-white'
-//       : 'bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white shadow-lg';
-
-//   return (
-//     <div className="pricing-page">
-//       {/* Background Ambience */}
-//       <div className="glow-spot top-center"></div>
-
-//       <div className="pricing-header">
-//         <motion.h1
-//           initial={{ opacity: 0, y: -20 }}
-//           animate={{ opacity: 1, y: 0 }}
-//           transition={{ duration: 0.6 }}
-//         >
-//           Unlock Your <span className="text-gradient-purple">Crypto Potential</span>
-//         </motion.h1>
-//         <motion.p
-//           initial={{ opacity: 0 }}
-//           animate={{ opacity: 1 }}
-//           transition={{ duration: 0.6, delay: 0.2 }}
-//         >
-//           Choose the perfect trajectory for your investment journey.
-//         </motion.p>
-//       </div>
-
-//       <div className="pricing-cards-container">
-//         {plans.map((plan, index) => (
-//           <motion.div
-//             key={index}
-//             className={`pricing-card glass-panel ${plan.highlight ? "highlighted" : ""}`}
-//             initial={{ opacity: 0, y: 30 }}
-//             animate={{ opacity: 1, y: 0 }}
-//             transition={{ duration: 0.5, delay: index * 0.1 }}
-//             whileHover={{ y: -10, transition: { duration: 0.3 } }}
-//           >
-//             {plan.highlight && <div className="popular-tag">Most Popular</div>}
-
-//             <div className="card-header">
-//               <h3>{plan.name}</h3>
-//               <div className="price-wrapper">
-//                 <span className="amount">{plan.price}</span>
-//                 <span className="period">{plan.period}</span>
-//               </div>
-//               <p className="description">{plan.description}</p>
-//             </div>
-
-//             <div className="divider"></div>
-
-//             <ul className="features-list">
-//               {plan.features.map((feature, i) => (
-//                 <li key={i} className={feature.available ? "" : "unavailable"}>
-//                   {feature.available ? <FiCheck className="icon-check" /> : <FiX className="icon-x" />}
-//                   <span>{feature.label}</span>
-//                 </li>
-//               ))}
-//             </ul>
-
-//             <button className={`btn-plan ${plan.highlight ? "btn-neon-purple" : "btn-glass"}`}>
-//               {plan.name === "Explorer" ? "Get Started" : "Upgrade Now"}
-//             </button>
-//           </motion.div>
-//         ))}
-//       </div>
-//     </div>
-//   );
-// }
-
 // Pricing.jsx - FIXED & PRODUCTION READY VERSION
 import { useTheme } from "../context/ThemeContext";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import './Pricing.css';
-import { 
-  FiCheck, FiX, FiInfo, FiArrowRight, FiStar, FiShield, FiClock, 
-  FiUsers, FiTrendingUp, FiZap, FiPlus 
+import {
+  FiCheck, FiX, FiInfo, FiArrowRight, FiStar, FiShield, FiClock,
+  FiUsers, FiTrendingUp, FiZap, FiPlus
 } from "react-icons/fi";
-
-// SAMPLE DATA - REQUIRED FOR WORKING CODE
-const plans = [
-  {
-    name: "Explorer",
-    price: "$0",
-    period: "/month",
-    description: "Perfect for beginners",
-    highlight: false,
-    features: [
-      { label: "Basic Market Data", available: true },
-      { label: "5 Signals/Day", available: true },
-      { label: "Email Alerts", available: true },
-      { label: "Mobile App", available: true },
-      { label: "Real-time Charts", available: false },
-      { label: "Priority Support", available: false },
-    ]
-  },
-  {
-    name: "Trader",
-    price: "$29",
-    period: "",
-    description: "For active traders",
-    highlight: true,
-    features: [
-      { label: "Basic Market Data", available: true },
-      { label: "Unlimited Signals", available: true },
-      { label: "SMS + Email Alerts", available: true },
-      { label: "Mobile App Pro", available: true },
-      { label: "Real-time Charts", available: true },
-      { label: "24/7 Priority Support", available: true },
-    ]
-  },
-  {
-    name: "Pro",
-    price: "$99",
-    period: "",
-    description: "Enterprise features",
-    highlight: false,
-    features: [
-      { label: "Everything in Trader", available: true },
-      { label: "Advanced Analytics", available: true },
-      { label: "API Access", available: true },
-      { label: "Custom Alerts", available: true },
-      { label: "Dedicated Manager", available: true },
-      { label: "White-label App", available: true },
-    ]
-  }
-];
-
-const comparisonFeatures = [
-  { name: "Market Data" },
-  { name: "Signals" },
-  { name: "Alerts" },
-  { name: "Charts" },
-  { name: "Support" },
-  { name: "API Access" }
-];
-
-const faqs = [
-  {
-    question: "What payment methods do you accept?",
-    answer: "We accept all major credit cards, PayPal, Apple Pay, Google Pay, and cryptocurrency payments through our secure gateway."
-  },
-  {
-    question: "Can I cancel anytime?",
-    answer: "Yes! Cancel anytime with no questions asked. Your subscription will continue until the end of the billing period."
-  },
-  {
-    question: "Is there a free trial?",
-    answer: "The Explorer plan is completely free forever. All paid plans come with a 14-day money-back guarantee."
-  },
-  {
-    question: "How secure is my data?",
-    answer: "We use enterprise-grade encryption (AES-256) and comply with GDPR, SOC 2 Type II standards. Your data is safe."
-  }
-];
+import { plans, faqs, comparisonFeatures } from "../data/pricingPlansData";
 
 export default function Pricing() {
   const { isDark } = useTheme();
@@ -210,7 +25,7 @@ export default function Pricing() {
       const docHeight = document.documentElement.scrollHeight - window.innerHeight;
       setScrollProgress(scrollTop / docHeight);
     };
-    
+
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -257,8 +72,8 @@ export default function Pricing() {
 
   const itemVariants = {
     hidden: { opacity: 0, y: 30 },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       y: 0,
       transition: { duration: 0.6 }
     }
@@ -266,8 +81,8 @@ export default function Pricing() {
 
   const cardVariants = {
     hidden: { opacity: 0, scale: 0.9 },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       scale: 1,
       transition: { duration: 0.5 }
     },
@@ -281,7 +96,7 @@ export default function Pricing() {
   return (
     <div className={`min-h-screen ${isDark ? 'dark' : ''}`}>
       {/* FIXED: Progress Bar */}
-      <motion.div 
+      <motion.div
         className="fixed top-0 left-0 h-1 bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500 z-50 origin-left"
         style={{ scaleX: scrollProgress }}
         initial={false}
@@ -290,7 +105,7 @@ export default function Pricing() {
       />
 
       {/* Hero Header */}
-      <motion.section 
+      <motion.section
         className="relative py-24 px-6 overflow-hidden"
         variants={containerVariants}
         initial="hidden"
@@ -303,11 +118,11 @@ export default function Pricing() {
           <div className="absolute bottom-20 right-10 w-96 h-96 bg-gradient-to-r from-blue-400/30 to-purple-400/30 rounded-full blur-3xl animate-pulse delay-1000" />
         </div>
 
-        <motion.div 
+        <motion.div
           className="max-w-4xl mx-auto text-center"
           variants={itemVariants}
         >
-          <motion.div 
+          <motion.div
             className="inline-flex items-center gap-2 mb-12 px-6 py-3 bg-white/20 dark:bg-white/10 backdrop-blur-xl rounded-full border border-white/30 mx-auto max-w-max"
             whileHover={{ scale: 1.05 }}
             transition={{ type: "spring" }}
@@ -318,14 +133,14 @@ export default function Pricing() {
             </span>
           </motion.div>
 
-          <motion.h1 
+          <motion.h1
             className="text-5xl md:text-7xl font-black mb-8 leading-tight bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 bg-clip-text text-transparent"
             variants={itemVariants}
           >
             Unlock Your Crypto Potential
           </motion.h1>
 
-          <motion.p 
+          <motion.p
             className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mb-16 leading-relaxed"
             variants={itemVariants}
           >
@@ -333,44 +148,57 @@ export default function Pricing() {
           </motion.p>
 
           {/* FIXED: Working Billing Toggle */}
-          <motion.div 
-            className="flex flex-col lg:flex-row items-center gap-6 p-8 bg-white/20 dark:bg-white/10 backdrop-blur-xl rounded-3xl border border-white/20 max-w-2xl mx-auto"
+          <motion.div
+            className="flex flex-col justify-center items-center gap-6 p-8 bg-white/20 dark:bg-white/10 backdrop-blur-xl rounded-3xl border border-white/20 max-w-lg mx-auto"
             whileHover={{ scale: 1.02 }}
             transition={{ type: "spring" }}
           >
-            <span className={`text-lg font-semibold ${billingCycle === 'monthly' ? 'text-gray-900 dark:text-white' : 'text-gray-500 dark:text-gray-400'}`}>
-              Monthly
-            </span>
-            
-            <motion.button
-              className="relative w-28 h-14 rounded-full p-2 bg-white/30 dark:bg-white/20 backdrop-blur-xl border-2 border-white/40 shadow-xl flex items-center justify-between"
-              onClick={toggleBillingCycle}
-              whileTap={{ scale: 0.95 }}
-              whileHover={{ scale: 1.05 }}
-            >
-              <motion.div 
-                className="w-10 h-10 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full shadow-lg flex items-center justify-center shadow-purple-500/50"
-                layout
-                transition={{ type: "spring", stiffness: 500, damping: 30 }}
+            <div className="flex flex-col lg:flex-row justify-center items-center gap-6">
+              <span className={`text-lg font-semibold ${billingCycle === 'monthly' ? 'text-gray-900 dark:text-white' : 'text-gray-500 dark:text-gray-400'}`}>
+                Monthly
+              </span>
+
+              <motion.button
+                className="relative w-28 h-14 rounded-full p-2 bg-white/30 dark:bg-white/20 backdrop-blur-xl border-2 border-white/40 shadow-xl flex items-center justify-between"
+                onClick={toggleBillingCycle}
+                whileTap={{ scale: 0.95 }}
+                whileHover={{ scale: 1.05 }}
               >
-                <FiZap className="text-white w-5 h-5" />
-              </motion.div>
-            </motion.button>
-            
-            <span className={`text-lg font-semibold flex items-center gap-2 ${billingCycle === 'yearly' ? 'text-gray-900 dark:text-white' : 'text-gray-500 dark:text-gray-400'}`}>
-              Yearly
+                <motion.div
+                  className="w-10 h-10 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full shadow-lg flex items-center justify-center shadow-purple-500/50"
+                  layout
+                  transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                >
+                  <FiZap className="text-white w-5 h-5" />
+                </motion.div>
+              </motion.button>
+
+              <span className={`text-lg font-semibold flex items-center gap-2 ${billingCycle === 'yearly' ? 'text-gray-900 dark:text-white' : 'text-gray-500 dark:text-gray-400'}`}>
+                Yearly
+              </span>
+            </div>
+
+            <AnimatePresence mode="wait">
               {billingCycle === 'yearly' && (
-                <span className="px-3 py-1 bg-green-500/20 text-green-500 text-xs font-bold rounded-full flex items-center gap-1">
-                  Save 17%
-                </span>
+                <motion.div
+                  key="save-badge"
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: "auto", opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  transition={{ duration: 0.3, ease: "easeInOut" }}
+                >
+                  <span className="px-3 py-1 bg-green-500/20 text-green-500 text-xs font-bold rounded-full flex items-center gap-1">
+                    Save 17%
+                  </span>
+                </motion.div>
               )}
-            </span>
+            </AnimatePresence>
           </motion.div>
         </motion.div>
       </motion.section>
 
       {/* Pricing Cards */}
-      <motion.section 
+      <motion.section
         className="py-24 px-8"
         variants={containerVariants}
         initial="hidden"
@@ -381,7 +209,7 @@ export default function Pricing() {
           {plans.map((plan, index) => {
             const isHovered = hoveredPlan === plan.name;
             const currentPrice = getPrice(plan.price, billingCycle);
-            
+
             return (
               <motion.div
                 key={plan.name}
@@ -396,11 +224,11 @@ export default function Pricing() {
                 onHoverEnd={() => setHoveredPlan(null)}
               >
                 {/* Card Background */}
-                <div className="h-full w-full bg-gradient-to-br bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl rounded-[1.75rem] p-8 flex flex-col relative z-10 border border-white/30 dark:border-gray-700/50">
-                  
+                <div className="h-full w-full bg-linear-to-br bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl rounded-[1.75rem] p-8 flex flex-col relative z-10 border border-white/30 dark:border-gray-700/50">
+
                   {/* Popular Badge */}
                   {plan.highlight && (
-                    <motion.div 
+                    <motion.div
                       className="absolute -top-6 left-1/2 -translate-x-1/2 bg-gradient-to-r from-yellow-400 to-orange-500 text-black px-8 py-3 rounded-full text-sm font-bold shadow-2xl whitespace-nowrap"
                       whileHover={{ scale: 1.05, y: -2 }}
                     >
@@ -430,18 +258,16 @@ export default function Pricing() {
                   {/* Features */}
                   <div className="space-y-4 mb-12">
                     {plan.features.map((feature, i) => (
-                      <motion.div 
+                      <motion.div
                         key={i}
-                        className={`flex items-center gap-4 p-4 rounded-xl transition-all duration-300 group/feature hover:bg-white/50 dark:hover:bg-gray-800/50 ${
-                          feature.available ? '' : 'opacity-60'
-                        }`}
+                        className={`flex items-center gap-4 py-1 rounded-xl transition-all duration-300 group/feature hover:bg-white/50 dark:hover:bg-gray-800/50 ${feature.available ? '' : 'opacity-60'
+                          }`}
                         whileHover={{ paddingLeft: '2.5rem' }}
                       >
-                        <div className={`w-12 h-12 rounded-xl flex items-center justify-center shadow-lg flex-shrink-0 ${
-                          feature.available 
-                            ? 'bg-gradient-to-r from-emerald-500 to-teal-600 text-white shadow-emerald-500/40' 
-                            : 'bg-gray-200/50 dark:bg-gray-700/50 text-gray-400 border-2 border-gray-300/50 dark:border-gray-600/50'
-                        }`}>
+                        <div className={`w-7 h-7 rounded-xl flex items-center justify-center shadow-lg shrink-0 ${feature.available
+                          ? 'bg-gradient-to-r from-emerald-500 to-teal-600 text-white shadow-emerald-500/40'
+                          : 'bg-gray-200/50 dark:bg-gray-700/50 text-gray-400 border-2 border-gray-300/50 dark:border-gray-600/50'
+                          }`}>
                           {feature.available ? <FiCheck className="w-6 h-6" /> : <FiX className="w-6 h-6" />}
                         </div>
                         <span className="font-medium text-gray-900 dark:text-white">{feature.label}</span>
@@ -450,12 +276,11 @@ export default function Pricing() {
                   </div>
 
                   {/* CTA Button */}
-                  <motion.button 
-                    className={`w-full py-6 px-8 rounded-2xl font-bold text-lg uppercase tracking-wider shadow-2xl transition-all duration-300 overflow-hidden relative ${
-                      plan.highlight 
-                        ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-purple-500/40 hover:shadow-purple-500/60 hover:-translate-y-1' 
-                        : 'bg-white/80 dark:bg-gray-800/80 text-gray-900 dark:text-white border-2 border-gray-200/50 dark:border-gray-600/50 hover:bg-white dark:hover:bg-gray-700'
-                    }`}
+                  <motion.button
+                    className={`w-full py-6 px-8 rounded-2xl font-bold text-lg uppercase tracking-wider shadow-2xl transition-all duration-300 overflow-hidden relative ${plan.highlight
+                      ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-purple-500/40 hover:shadow-purple-500/60 hover:-translate-y-1'
+                      : 'bg-gray-700 dark:bg-gray-700 text-gray-900 dark:text-white border-2 border-gray-200/50 dark:border-gray-600/50 hover:bg-gray-800 dark:hover:bg-gray-900'
+                      }`}
                     onClick={() => handlePlanClick(plan.name)}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.98 }}
@@ -473,8 +298,8 @@ export default function Pricing() {
       </motion.section>
 
       {/* FIXED: Working Comparison Table */}
-      <motion.section 
-        className="py-24 px-6 bg-gradient-to-b from-gray-50/50 to-transparent dark:from-gray-900/50"
+      <motion.section
+        className="py-24 px-6 bg-linear-to-b from-gray-50/50 to-transparent dark:from-gray-900/50"
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
@@ -494,9 +319,9 @@ export default function Pricing() {
             <table className="w-full bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl rounded-3xl border border-white/30 dark:border-gray-700/50 shadow-2xl">
               <thead>
                 <tr className="border-b border-gray-200/50 dark:border-gray-700/50">
-                  <th className="p-8 text-left font-bold text-lg">Feature</th>
+                  <th className="p-6 text-left font-bold text-lg">Feature</th>
                   {plans.map((plan) => (
-                    <th key={plan.name} className="p-8 text-center relative">
+                    <th key={plan.name} className="p-6 text-center relative">
                       <div>
                         <div className="text-2xl font-black mb-1">{plan.name}</div>
                         <div className="text-sm text-gray-500 uppercase tracking-wider">
@@ -504,7 +329,7 @@ export default function Pricing() {
                         </div>
                       </div>
                       {plan.highlight && (
-                        <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-yellow-400 to-orange-500 text-black px-4 py-1 rounded-full text-xs font-bold">
+                        <div className="w-3/4 md:w-1/2 mx-auto mt-2 bg-gradient-to-r from-yellow-400 to-orange-500 text-black px-3 py-1 rounded-full text-xs font-bold">
                           Most Popular
                         </div>
                       )}
@@ -515,12 +340,12 @@ export default function Pricing() {
               <tbody className="divide-y divide-gray-200/50 dark:divide-gray-700/50">
                 {comparisonFeatures.map((feature, index) => (
                   <tr key={index} className="hover:bg-gray-50/50 dark:hover:bg-gray-800/50 transition-colors">
-                    <td className="p-8 font-semibold text-lg text-gray-900 dark:text-white">
+                    <td className="p-6 font-semibold text-lg text-gray-900 dark:text-white">
                       {feature.name}
                     </td>
                     {plans.map((plan) => {
-                      const available = plan.features.find(f => 
-                        f.label.toLowerCase().includes(feature.name.toLowerCase())
+                      const available = plan.features.find(f =>
+                        f.label?.toLowerCase().includes(feature.name.toLowerCase())
                       )?.available || false;
                       return (
                         <td key={plan.name} className="p-8 text-center">
@@ -547,7 +372,7 @@ export default function Pricing() {
       </motion.section>
 
       {/* FIXED: Working FAQ Section */}
-      <motion.section 
+      <motion.section
         className="py-24 px-6"
         variants={containerVariants}
         initial="hidden"
@@ -555,16 +380,16 @@ export default function Pricing() {
         viewport={{ once: true }}
       >
         <div className="max-w-4xl mx-auto">
-          <motion.h2 
+          <motion.h2
             className="text-5xl md:text-6xl font-black text-center mb-20 bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 bg-clip-text text-transparent"
             variants={itemVariants}
           >
             Frequently Asked Questions
           </motion.h2>
-          
+
           <div className="space-y-6">
             {faqs.map((faq, index) => (
-              <motion.div 
+              <motion.div
                 key={index}
                 className="glass-panel rounded-2xl overflow-hidden shadow-xl"
                 variants={itemVariants}
@@ -573,7 +398,7 @@ export default function Pricing() {
                 transition={{ delay: index * 0.1 }}
                 viewport={{ once: true }}
               >
-                <motion.button 
+                <motion.button
                   className="w-full p-10 text-left hover:bg-white/50 dark:hover:bg-gray-800/50 transition-all duration-300"
                   onClick={() => setOpenFaqIndex(openFaqIndex === index ? null : index)}
                   whileTap={{ scale: 0.98 }}
@@ -582,18 +407,18 @@ export default function Pricing() {
                     <h4 className="text-2xl font-bold text-gray-900 dark:text-white">
                       {faq.question}
                     </h4>
-                    <motion.div 
+                    <motion.div
                       animate={{ rotate: openFaqIndex === index ? 90 : 0 }}
                       transition={{ duration: 0.3 }}
                     >
-                      <FiPlus className="w-8 h-8 text-gray-500" />
+                      <FiPlus className="w-7 h-7 text-gray-500" />
                     </motion.div>
                   </div>
                 </motion.button>
-                
+
                 <AnimatePresence>
                   {openFaqIndex === index && (
-                    <motion.div 
+                    <motion.div
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: "auto", opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
@@ -613,7 +438,7 @@ export default function Pricing() {
 
       {/* FIXED: Payment Modal */}
       <dialog id="payment-modal" className="backdrop:bg-black/80 p-8 w-full max-w-md mx-auto">
-        <motion.form 
+        <motion.form
           className="bg-white/95 dark:bg-gray-900/95 backdrop-blur-xl rounded-3xl p-12 shadow-2xl border border-white/50 dark:border-gray-700/50"
           initial={{ scale: 0.9, opacity: 0, y: 20 }}
           animate={{ scale: 1, opacity: 1, y: 0 }}
@@ -623,11 +448,11 @@ export default function Pricing() {
             Payment Setup
           </h3>
           <p className="text-center text-gray-600 dark:text-gray-300 mb-12 text-lg leading-relaxed">
-            Secure payment processing is rolling out soon. 
+            Secure payment processing is rolling out soon.
             You'll be the first to know when it's live!
           </p>
           <div className="space-y-4">
-            <button 
+            <button
               type="button"
               className="w-full bg-gradient-to-r from-gray-500 to-gray-600 hover:from-gray-600 hover:to-gray-700 text-white py-4 px-6 rounded-2xl font-bold shadow-lg transition-all hover:shadow-xl hover:-translate-y-1"
               onClick={() => {
@@ -637,7 +462,7 @@ export default function Pricing() {
             >
               Close
             </button>
-            <button 
+            <button
               type="button"
               className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white py-4 px-6 rounded-2xl font-bold shadow-lg shadow-purple-500/40 transition-all hover:shadow-xl hover:-translate-y-1"
             >

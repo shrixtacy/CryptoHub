@@ -97,7 +97,7 @@ function Navbar() {
           </div>
         </div>
 
-        <div className="desktop-auth">
+        <div className="desktop-auth pl-6">
           {currentUser ? (
             <>
               <div className="user-info">
@@ -183,7 +183,6 @@ function Navbar() {
 
         <div className="nav-right desktop-only">
           {/* Currency Selector Removed as per request */}
-
           {currentUser ? (
             <div className="user-menu">
               <span className="user-email">{currentUser.email}</span>
