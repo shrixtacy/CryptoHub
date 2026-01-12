@@ -1,3 +1,4 @@
+// App.jsx
 import React, { useEffect, useContext } from "react";
 import Navbar from "./components/Navbar";
 import { Routes, Route, useLocation } from "react-router-dom";
@@ -22,9 +23,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { CoinContext } from "./context/CoinContext";
 import LoadingSpinner from "./components/LoadingSpinner";
-import { Toaster } from "react-hot-toast";
-import ScrollToTop from "./components/ScrollToTop";
-
+import BlogArticle from './data/BlogArticle';
 
 const App = () => {
   const { isLoading } = useContext(CoinContext);
