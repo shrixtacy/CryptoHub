@@ -26,6 +26,8 @@ import { CoinContext } from "@/context/CoinContext";
 import LoadingSpinner from "@/components/LoadingSpinner";
 import { Toaster } from "react-hot-toast";
 import ScrollToTop from "@/components/ScrollToTop";
+import PrivacyPolicy from "@/pages/PrivacyPolicy.jsx";
+import TermsConditions from "@/pages/TermsConditions.jsx";
 
 const App = () => {
   const { isLoading } = useContext(CoinContext);
@@ -100,6 +102,8 @@ const App = () => {
                 <Route path="/market-overview" element={<MarketOverview />} />
                 <Route path="/leaderboard" element={<Leaderboard />} />
                 <Route path="/change-password" element={<ChangePassword />} />
+                <Route path="/privacy" element={<PrivacyPolicy />} />
+                <Route path="/terms" element={<TermsConditions />} />
               </Route>
 
               {/* Coin route - accessible to all but shows sidebar if logged in */}
