@@ -1,5 +1,5 @@
 import React from "react";
-import "././styles/dashboard-theme.css"
+import "../styles/dashboard-theme.css"
 import "./Home/Home.css"
 
 const PrivacyPolicy = () => {
