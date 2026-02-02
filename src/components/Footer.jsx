@@ -92,6 +92,7 @@ const Footer = () => {
               <li><Link to="/api">API Access</Link></li>
             </ul>
           </div>
+          
 
           {/* Newsletter */}
           <div className="footer-newsletter">
