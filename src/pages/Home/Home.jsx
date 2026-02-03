@@ -6,7 +6,6 @@ import { FiSearch, FiArrowUpRight, FiArrowDownRight, FiFilter } from "react-icon
 import { motion } from "framer-motion";
 import MarketFilters from "../../components/MarketFilters";
 import { Virtuoso } from 'react-virtuoso';
-import { Slice } from "lucide-react";
 
 const Home = () => {
   const { allCoin, filteredCoins, currency } = useContext(CoinContext);
