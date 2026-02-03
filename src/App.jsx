@@ -31,6 +31,7 @@ import TermsOfService from "@/components/TermsOfService.jsx";
 import CookiePolicy from "@/components/CookiePolicy.jsx";
 import "./App.css";
 import ContactUs from "./components/ContactUs";
+import FAQ from "./components/FAQ";
 
 const App = () => {
   const { isLoading } = useContext(CoinContext);
@@ -124,6 +125,7 @@ const App = () => {
                 <Route path="/privacy" element={<PrivacyPolicy />} />
                 <Route path="/terms" element={<TermsOfService />} />
                 <Route path="/contactus" element={<ContactUs />} />
+                <Route path="/faq" element={<FAQ />} />
 
 
                 <Route path="/cookies" element={<CookiePolicy />} />
