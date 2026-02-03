@@ -125,8 +125,8 @@ const App = () => {
 
                 <Route path="/cookies" element={<CookiePolicy />} />
               </Routes>
-              {!isDashboard && <Footer />}
             </div>
+            {!isDashboard && <Footer />}
           </div>
           <ScrollToTop />
         </AuthProvider>

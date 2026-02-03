@@ -251,6 +251,30 @@
 .footer-bottom a:hover {
   color: #7928ca;
 }
+.footer-newsletter{
+  max-width:100%;
+}
+.footer-newsletter form{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+}
+.footer-newsletter form input{
+  border-radius: 5px;
+  flex:1;
+padding:5px 0px;
+}
+.footer-newsletter form input::placeholder{
+  padding-left:10px;
+}
+button{
+  border-radius: 5px;
+  padding:5px 10px;
+  background-color: #666;
+}
+button:hover{
+  background-color: #7928ca;
+}
 
 /* Animations */
 @keyframes slideIn {
