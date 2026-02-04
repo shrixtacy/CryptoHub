@@ -32,6 +32,7 @@ import CookiePolicy from "@/components/CookiePolicy.jsx";
 import "./App.css";
 import ContactUs from "./components/ContactUs";
 import FAQ from "./components/FAQ";
+import PageNotFound from "./components/PageNotFound";
 
 const App = () => {
   const { isLoading } = useContext(CoinContext);
@@ -126,6 +127,10 @@ const App = () => {
                 <Route path="/terms" element={<TermsOfService />} />
                 <Route path="/contactus" element={<ContactUs />} />
                 <Route path="/faq" element={<FAQ />} />
+
+                {/* Page Not Found */}
+                <Route path="*" element={<PageNotFound />} />
+
 
 
                 <Route path="/cookies" element={<CookiePolicy />} />
