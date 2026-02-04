@@ -48,6 +48,8 @@ function Navbar() {
     { to: "/blog", label: "Insights" },
     { to: "/features", label: "Features" },
     { to: "/contributors", label: "Contributors" },
+    { to: "/contactus", label: "Contact Us" },
+    { to: "/faq", label: "FAQ" },
   ];
 
   const authenticatedNavLinks = [
@@ -57,7 +59,9 @@ function Navbar() {
   ];
 
   return (
-    <nav className={`navbar ${scrolled ? "scrolled" : ""} ${isMobileMenuOpen ? "has-mobile-menu" : ""} ${isDashboardPage ? "is-dashboard" : ""}`}>
+    <nav
+      className={`navbar ${scrolled ? "scrolled" : ""} ${isMobileMenuOpen ? "has-mobile-menu" : ""} ${isDashboardPage ? "is-dashboard" : ""}`}
+    >
       <div className="navbar-content">
         {/* Brand/Logo Section */}
         <Link to="/" className="navbar-logo">
@@ -72,8 +76,8 @@ function Navbar() {
           <ul className={`navbar-menu ${isMobileMenuOpen ? "active" : ""}`}>
             {(currentUser ? authenticatedNavLinks : navLinks).map((link) => (
               <li key={link.to} className="navbar-item">
-                <Link 
-                  to={link.to} 
+                <Link
+                  to={link.to}
                   className={`navbar-link ${location.pathname === link.to ? "active" : ""}`}
                   onClick={closeMobileMenu}
                 >
@@ -92,7 +96,11 @@ function Navbar() {
               <div className="user-menu">
                 <span className="user-email">{currentUser.email}</span>
                 {isEmailProvider() && (
-                  <Link to="/change-password" className="icon-btn" title="Change Password">
+                  <Link
+                    to="/change-password"
+                    className="icon-btn"
+                    title="Change Password"
+                  >
                     <FiLock />
                   </Link>
                 )}
@@ -113,7 +121,7 @@ function Navbar() {
           </div>
 
           {/* Mobile Menu Toggle */}
-          <button 
+          <button
             className={`navbar-toggle ${isMobileMenuOpen ? "active" : ""}`}
             onClick={toggleMobileMenu}
             aria-label="Toggle navigation menu"
@@ -127,10 +135,18 @@ function Navbar() {
         {/* Mobile Auth Buttons (only in mobile menu) */}
         {isMobileMenuOpen && !currentUser && !isDashboardPage && (
           <div className="mobile-auth">
-            <Link to="/login" className="navbar-btn navbar-btn-login" onClick={closeMobileMenu}>
+            <Link
+              to="/login"
+              className="navbar-btn navbar-btn-login"
+              onClick={closeMobileMenu}
+            >
               LOGIN
             </Link>
-            <Link to="/signup" className="navbar-btn navbar-btn-signup" onClick={closeMobileMenu}>
+            <Link
+              to="/signup"
+              className="navbar-btn navbar-btn-signup"
+              onClick={closeMobileMenu}
+            >
               Get Started
             </Link>
           </div>

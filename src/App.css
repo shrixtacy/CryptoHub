@@ -1,0 +1,95 @@
+.app {
+  min-height: 100vh;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.app-container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  box-sizing: border-box;
+}
+
+/* Responsive breakpoints */
+@media (max-width: 1440px) {
+  .app-container {
+    max-width: 1200px;
+    padding: 0 1.25rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .app-container {
+    max-width: 100%;
+    padding: 0 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .app-container {
+    padding: 0 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .app-container {
+    padding: 0 0.5rem;
+  }
+}
+
+/* Dashboard container - uses full width */
+.app-dashboard-container {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Ensure dashboard pages use full width */
+.dashboard-layout,
+.dashboard-content {
+  width: 100% !important;
+  max-width: none !important;
+}
+
+/* Override any tight constraints from components */
+.container,
+.max-w-7xl {
+  max-width: 100% !important;
+}
+
+/* Dashboard specific overrides */
+.app-dashboard-container .container,
+.app-dashboard-container .max-w-7xl,
+.app-dashboard-container .max-w-6xl,
+.app-dashboard-container .max-w-5xl,
+.app-dashboard-container .max-w-4xl {
+  max-width: none !important;
+  width: 100% !important;
+}
+
+/* Market overview and table specific styles */
+.market-overview,
+.coin-table,
+.dashboard-table {
+  width: 100% !important;
+  max-width: none !important;
+}
+
+/* Responsive grid improvements */
+.grid {
+  width: 100%;
+}
+
+/* Table responsive improvements */
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+}
+
+table {
+  min-width: 100%;
+}

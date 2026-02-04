@@ -26,11 +26,18 @@ import { CoinContext } from "@/context/CoinContext";
 import LoadingSpinner from "@/components/LoadingSpinner";
 import { Toaster } from "react-hot-toast";
 import ScrollToTop from "@/components/ScrollToTop";
+import PrivacyPolicy from "@/components/PrivacyPolicy.jsx";
+import TermsOfService from "@/components/TermsOfService.jsx";
+import CookiePolicy from "@/components/CookiePolicy.jsx";
+import "./App.css";
+import ContactUs from "./components/ContactUs";
+import FAQ from "./components/FAQ";
 
 const App = () => {
   const { isLoading } = useContext(CoinContext);
   const location = useLocation();
-  const isDashboard = location.pathname === "/dashboard" ||
+  const isDashboard =
+    location.pathname === "/dashboard" ||
     location.pathname === "/leaderboard" ||
     location.pathname === "/market-overview" ||
     location.pathname === "/change-password" ||
@@ -75,39 +82,55 @@ const App = () => {
             {/* Loading Spinner - will show when isLoading is true */}
             {isLoading && !isDashboard && <LoadingSpinner />}
 
-            {!isDashboard && <Navbar />}
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/pricing" element={<Pricing />} />
-              <Route path="/blog" element={<Blog />} />
-              {/* Blog detail route supporting both slug and id patterns */}
-              <Route path="/blog/:slug" element={<BlogDetail />} />
-              <Route path="/blog/article/:id" element={<BlogDetail />} />
-              
-              <Route path="/features" element={<Features />} />
-              <Route path="/signup" element={<Signup />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/forgot-password" element={<ForgotPassword />} />
-              <Route path="/contributors" element={<Contributors />} />
+            <div
+              className={
+                isDashboard ? "app-dashboard-container" : "app-container"
+              }
+            >
+              {!isDashboard && <Navbar />}
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/pricing" element={<Pricing />} />
+                <Route path="/blog" element={<Blog />} />
+                {/* Blog detail route supporting both slug and id patterns */}
+                <Route path="/blog/:slug" element={<BlogDetail />} />
+                <Route path="/blog/article/:id" element={<BlogDetail />} />
 
-              {/* Dashboard Layout with nested routes - all share the same sidebar */}
-              <Route element={
-                <PrivateRoute>
-                  <DashboardLayout />
-                </PrivateRoute>
-              }>
-                <Route path="/dashboard" element={<DashboardContent />} />
-                <Route path="/market-overview" element={<MarketOverview />} />
-                <Route path="/leaderboard" element={<Leaderboard />} />
-                <Route path="/change-password" element={<ChangePassword />} />
-              </Route>
+                <Route path="/features" element={<Features />} />
+                <Route path="/signup" element={<Signup />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/forgot-password" element={<ForgotPassword />} />
+                <Route path="/contributors" element={<Contributors />} />
 
-              {/* Coin route - accessible to all but shows sidebar if logged in */}
-              <Route path="/coin/:coinId" element={<CoinWrapper />} />
-              
-              {/* Add 404 Route if you implemented it earlier */}
-              {/* <Route path="*" element={<NotFound />} /> */}
-            </Routes>
+                {/* Dashboard Layout with nested routes - all share the same sidebar */}
+                <Route
+                  element={
+                    <PrivateRoute>
+                      <DashboardLayout />
+                    </PrivateRoute>
+                  }
+                >
+                  <Route path="/dashboard" element={<DashboardContent />} />
+                  <Route path="/market-overview" element={<MarketOverview />} />
+                  <Route path="/leaderboard" element={<Leaderboard />} />
+                  <Route path="/change-password" element={<ChangePassword />} />
+                </Route>
+
+                {/* Coin route - accessible to all but shows sidebar if logged in */}
+                <Route path="/coin/:coinId" element={<CoinWrapper />} />
+
+                {/* Add 404 Route if you implemented it earlier */}
+                {/* <Route path="*" element={<NotFound />} /> */}
+
+                <Route path="/privacy" element={<PrivacyPolicy />} />
+                <Route path="/terms" element={<TermsOfService />} />
+                <Route path="/contactus" element={<ContactUs />} />
+                <Route path="/faq" element={<FAQ />} />
+
+
+                <Route path="/cookies" element={<CookiePolicy />} />
+              </Routes>
+            </div>
             {!isDashboard && <Footer />}
           </div>
           <ScrollToTop />

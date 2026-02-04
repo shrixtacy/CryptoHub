@@ -1,0 +1,37 @@
+services:
+  # Main application service
+  cryptohub:
+    container_name: cryptohub-app
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: development
+    ports:
+      - "5173:5173"
+    volumes:
+      # Mount source code for hot reload
+      - .:/app
+      # Use named volume for node_modules to avoid conflicts
+      - node_modules:/app/node_modules
+    environment:
+      - NODE_ENV=development
+      # Vite specific environment variables
+      - VITE_HOST=0.0.0.0
+    stdin_open: true
+    tty: true
+    networks:
+      - cryptohub-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:5173 || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+networks:
+  cryptohub-network:
+    driver: bridge
+
+volumes:
+  node_modules:

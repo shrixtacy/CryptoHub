@@ -9,6 +9,12 @@ body {
   font-family: 'Inter', sans-serif;
   line-height: 1.6;
 }
+section.py-20.px-8 {
+    max-width: 1200px;
+
+}
+section.py-20.px-6 {
+    max-width: 1200px;}
 
 /* Glass Panels */
 .glass-panel {
@@ -80,7 +86,7 @@ body {
 
 .max-w-7xl table {
   width: 100% !important;
-  min-width: 800px;
+  min-width: 0;
   background: rgba(17, 24, 39, 0.95) !important;
   backdrop-filter: blur(40px) !important;
   border: 1px solid rgba(71, 85, 105, 0.3) !important;

@@ -323,6 +323,19 @@ npm run dev
 http://localhost:5173
 ```
 
+## 🐳 Docker Setup (Alternative)
+
+For a containerized development environment:
+
+```bash
+# Start with Docker Compose
+docker compose up
+
+# Access at http://localhost:5173
+```
+
+**📖 See [DOCKER_SETUP.md](DOCKER_SETUP.md) for full guide**
+
 ### Build for Production
 
 ```bash

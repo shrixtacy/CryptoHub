@@ -1,7 +1,7 @@
 .home-container {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 0 5% 100px 5%;
+  /* padding: 0 5% 100px 5%; */
   position: relative;
   overflow: hidden;
 }
@@ -215,8 +215,10 @@
 }
 
 .market-section {
-    margin-top: 6rem;
-    margin-bottom: 4rem;
+    padding: 0;
+    width: 100%;
+    max-width: none;
+    
 }
 
 .section-header {
@@ -283,9 +285,9 @@
 .table-row {
     display: grid;
     grid-template-columns: 0.5fr 2fr 1.5fr 1.2fr 1.8fr;
-    padding: 18px 20px;
+    padding: 20px 24px;
     align-items: center;
-    gap: 12px;
+    gap: 14px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     text-decoration: none;
     color: inherit;
@@ -295,7 +297,7 @@
 .table-row:hover {
     background: rgba(255, 255, 255, 0.02);
     border-left: 3px solid #06b6d4;
-    padding-left: 17px;
+    padding-left: 21px;
 }
 
 .col-rank {
@@ -678,11 +680,11 @@
 }
 
 .crypto-table {
-  max-width: 1100px;
-  margin: 20px auto 80px auto;
+  max-width: 100%;
+  margin: 0;
   background: linear-gradient(rgba(84, 3, 255, 0.15), rgba(105, 2, 153, 0.15));
   border-radius: 25px;
-  padding: 30px;
+  padding: 35px;
   box-shadow: 0 25px 70px rgba(127, 92, 255, 0.4);
   border: 1px solid rgba(127, 92, 255, 0.3);
 }
@@ -690,7 +692,7 @@
 .table-layout {
   display: grid;
   grid-template-columns: 0.5fr 2fr 1fr 1fr 1.5fr;
-  padding: 15px 20px;
+  padding: 18px 24px;
   align-items: center;
   border-bottom: 1px solid #3c3c3c;
   contain: layout;
@@ -711,11 +713,11 @@
 }
 
 .crypto-table {
-    max-width: 1100px;
+    max-width: 1300px;
     margin: 20px auto 80px auto;
     background: linear-gradient(rgba(84, 3, 255, 0.15), rgba(105, 2, 153, 0.15));
     border-radius: 25px;
-    padding: 30px;
+    padding: 35px;
     box-shadow: 0 25px 70px rgba(127, 92, 255, 0.4);
     border: 1px solid rgba(127, 92, 255, 0.3);
     overflow-x: auto;
@@ -736,6 +738,28 @@
 .table-layout .red {
   color: #ff4646;
   text-align: center;
+}
+/* ==================== Pagination ==================== */
+.table-container .pagination {
+    margin-top: 0 ;  /*overriding to fix auto margin-top:4rem; */
+}
+.pagination {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  display: flex;
+  justify-content: center;
+  align-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.pagination button:disabled {
+  background: #1a1a1a;
+  color: #666;
+  border-color: #222;
+  cursor: default;
+  transform: none;
+  box-shadow: none;
 }
 
 /* ==================== LOADING STYLES ==================== */
@@ -1033,7 +1057,7 @@
     }
 
     .crypto-table {
-        padding: 15px;
+        padding: 20px;
         border-radius: 15px;
         margin: 20px 10px 60px 10px;
     }
