@@ -22,8 +22,9 @@ const { currentUser, logout, isEmailProvider } = useAuth();
   };
 
   const handleDropdownLeave = () => {
-    setOpenDropdown(null);
-  };
+  setTimeout(() => setOpenDropdown(null), 100); 
+};
+
 
   const handleDropdownClick = (label) => {
     setOpenDropdown(openDropdown === label ? null : label);
@@ -116,15 +117,37 @@ const { currentUser, logout, isEmailProvider } = useAuth();
 
         {/* Desktop Navigation Menu */}
         {!isDashboardPage && (
-          <ul className="navbar-menu">
-            {(currentUser ? authenticatedNavLinks : navLinks).map((link) => (
-              <li
-                key={link.label}
-                className="navbar-item"
-                onMouseEnter={() =>
-                  link.dropdown && handleDropdownEnter(link.label)
-                }
-                onMouseLeave={handleDropdownLeave}
+    <ul className="navbar-menu">
+      {(currentUser ? authenticatedNavLinks : navLinks).map((link) => (
+        <li
+          key={link.label}
+          className="navbar-item dropdown-container"
+          onMouseEnter={() => link.dropdown && handleDropdownEnter(link.label)}
+          onMouseLeave={handleDropdownLeave}
+        >
+          {link.dropdown ? (
+            <>
+              <span 
+                className="navbar-link dropdown-trigger"
+                onClick={() => handleDropdownClick(link.label)}
+                role="button"
+                aria-expanded={openDropdown === link.label}
+                aria-haspopup="true"
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    handleDropdownClick(link.label);
+                  }
+                }}
+              >
+                {link.label}
+              </span>
+
+              <ul 
+                className={`dropdown-menu ${openDropdown === link.label ? 'show' : ''}`}
+                role="menu"
+                aria-label={`${link.label} submenu`}
               >
                 {link.dropdown ? (
                   <>
