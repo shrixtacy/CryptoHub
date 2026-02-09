@@ -120,7 +120,7 @@
   top: 0;
   left: 0;
   right: 0;
-  width: 100%;
+  width: 100vw;
   background: rgba(10, 10, 15, 0.95);
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
@@ -130,6 +130,8 @@
   transition: all 0.4s var(--transition-smooth);
   /* Entrance animation */
   animation: navbarSlideDown 0.6s var(--transition-elastic) forwards;
+  margin-left: -90px;
+
 }
 
 /* Subtle border glow animation on navbar */
@@ -169,7 +171,7 @@
   gap: 1.2rem;
   width: 100%;
   max-width: 1400px;
-  margin: 0 auto;
+  margin: 0;
 }
 
 /* Desktop layout - grid for logo, menu, actions */
