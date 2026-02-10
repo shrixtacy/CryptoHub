@@ -10,6 +10,7 @@ function Navbar() {
   const { theme } = useTheme();
   const navigate = useNavigate();
   const location = useLocation();
+
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [openDropdown, setOpenDropdown] = useState(null);
@@ -18,8 +19,10 @@ function Navbar() {
 
   const isDashboardPage = location.pathname === "/dashboard";
 
+  /* -------------------- Handlers -------------------- */
+
   const handleDropdownEnter = (label) => {
-  setOpenDropdown(label);
+    setOpenDropdown(label);
   };
 
   const handleDropdownLeave = () => {
@@ -30,20 +33,36 @@ function Navbar() {
     setOpenDropdown(openDropdown === label ? null : label);
   };
 
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen((prev) => !prev);
+  };
 
-  // Handle scroll effect for navbar
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
+    setOpenDropdown(null);
+  };
+
+  const handleLogout = useCallback(async () => {
+    try {
+      await logout();
+      navigate("/");
+      closeMobileMenu();
+    } catch (error) {
+      console.error("Logout failed:", error);
+    }
+  }, [logout, navigate]);
+
+  /* -------------------- Effects -------------------- */
+
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Close dropdown when clicking outside
   useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (openDropdown && !event.target.closest('.navbar-item')) {
+    const handleClickOutside = (e) => {
+      if (openDropdown && !e.target.closest(".dropdown-container")) {
         setOpenDropdown(null);
       }
       if (isProfileOpen && !event.target.closest('.profile-menu-container')) {
@@ -58,33 +77,16 @@ function Navbar() {
       }
     };
 
-    document.addEventListener('click', handleClickOutside);
-    document.addEventListener('keydown', handleEscapeKey);
-    
+    document.addEventListener("click", handleClickOutside);
+    document.addEventListener("keydown", handleEscape);
+
     return () => {
-      document.removeEventListener('click', handleClickOutside);
-      document.removeEventListener('keydown', handleEscapeKey);
+      document.removeEventListener("click", handleClickOutside);
+      document.removeEventListener("keydown", handleEscape);
     };
   }, [openDropdown, isProfileOpen]);
 
-  const handleLogout = useCallback(async () => {
-    try {
-      await logout();
-      navigate("/");
-      setIsMobileMenuOpen(false);
-    } catch (error) {
-      console.error("Failed to logout:", error);
-    }
-  }, [logout, navigate]);
-
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
-  };
-
-  const closeMobileMenu = () => {
-    setIsMobileMenuOpen(false);
-    setOpenDropdown(null);
-  };
+  /* -------------------- Nav Links -------------------- */
 
   const navLinks = [
     { to: "/", label: "Home" },
@@ -93,13 +95,12 @@ function Navbar() {
     { to: "/features", label: "Features" },
     {
       label: "More",
-      dropdown:[
-    { to: "/contributors", label: "Contributors" },
-    { to: "/contactus", label: "Contact Us" },
-    { to: "/faq", label: "FAQ" },
+      dropdown: [
+        { to: "/contributors", label: "Contributors" },
+        { to: "/contactus", label: "Contact Us" },
+        { to: "/faq", label: "FAQ" },
       ],
-    }
-    
+    },
   ];
 
   const authenticatedNavLinks = [
@@ -108,20 +109,24 @@ function Navbar() {
     { to: "/leaderboard", label: "Leaderboard" },
   ];
 
+  const linksToRender = currentUser ? authenticatedNavLinks : navLinks;
+
+  /* -------------------- JSX -------------------- */
+
   return (
     <nav
-      className={`navbar ${scrolled ? "scrolled" : ""} ${isMobileMenuOpen ? "has-mobile-menu" : ""} ${isDashboardPage ? "is-dashboard" : ""}`}
+      className={`navbar ${scrolled ? "scrolled" : ""} ${
+        isMobileMenuOpen ? "has-mobile-menu" : ""
+      } ${isDashboardPage ? "is-dashboard" : ""}`}
     >
       <div className="navbar-content">
-        {/* Brand/Logo Section */}
+        {/* Logo */}
         <Link to="/" className="navbar-logo">
-          <div className="navbar-logo-icon">
-            <img src="/crypto-logo.png" alt="CryptoHub" className="logo-img" />
-          </div>
+          <img src="/crypto-logo.png" alt="CryptoHub" className="logo-img" />
           <span className="logo-text">CryptoHub</span>
         </Link>
 
-        {/* Desktop Navigation Menu */}
+        {/* Desktop Menu */}
         {!isDashboardPage && (
     <ul className="navbar-menu">
       {(currentUser ? authenticatedNavLinks : navLinks).map((link) => (
@@ -155,40 +160,63 @@ function Navbar() {
                 role="menu"
                 aria-label={`${link.label} submenu`}
               >
-                {link.dropdown.map((item) => (
-                  <li key={item.to} role="none">
-                    <Link
-                      to={item.to}
-                      className="dropdown-link"
-                      onClick={closeMobileMenu}
-                      role="menuitem"
+                {!link.dropdown ? (
+                  <Link
+                    to={link.to}
+                    className={`navbar-link ${
+                      location.pathname === link.to ? "active" : ""
+                    }`}
+                    onClick={closeMobileMenu}
+                  >
+                    {link.label}
+                  </Link>
+                ) : (
+                  <>
+                    <span
+                      className="navbar-link dropdown-trigger"
+                      role="button"
+                      tabIndex={0}
+                      aria-haspopup="true"
+                      aria-expanded={openDropdown === link.label}
+                      onClick={() => handleDropdownClick(link.label)}
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter" || e.key === " ") {
+                          e.preventDefault();
+                          handleDropdownClick(link.label);
+                        }
+                      }}
                     >
-                      {item.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </>
-          ) : (
-            <Link
-              to={link.to}
-              className={`navbar-link ${
-                location.pathname === link.to ? "active" : ""
-              }`}
-              onClick={closeMobileMenu}
-            >
-              {link.label}
-            </Link>
-          )}
-        </li>
-      ))}
-    </ul>
+                      {link.label}
+                    </span>
 
+                    <ul
+                      className={`dropdown-menu ${
+                        openDropdown === link.label ? "show" : ""
+                      }`}
+                      role="menu"
+                    >
+                      {link.dropdown.map((item) => (
+                        <li key={item.to} role="none">
+                          <Link
+                            to={item.to}
+                            className="dropdown-link"
+                            role="menuitem"
+                            onClick={closeMobileMenu}
+                          >
+                            {item.label}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </>
+                )}
+              </li>
+            ))}
+          </ul>
         )}
 
-        {/* Right Side Actions */}
+        {/* Right Actions */}
         <div className="navbar-actions">
-          {/* Desktop Auth Buttons/User Menu */}
           <div className="desktop-auth">
             {currentUser ? (
               <div className="profile-menu-container">
@@ -246,15 +274,17 @@ function Navbar() {
             )}
           </div>
 
-          {/* Mobile Menu Toggle */}
+          {/* Mobile Toggle */}
           <button
-            className={`navbar-toggle ${isMobileMenuOpen ? "active" : ""}`}
+            className={`navbar-toggle ${
+              isMobileMenuOpen ? "active" : ""
+            }`}
             onClick={toggleMobileMenu}
-            aria-label="Toggle navigation menu"
+            aria-label="Toggle navigation"
           >
-            <span></span>
-            <span></span>
-            <span></span>
+            <span />
+            <span />
+            <span />
           </button>
         </div>
 
