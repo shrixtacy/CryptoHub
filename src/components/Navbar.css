@@ -1,6 +1,4 @@
-
-   /* RESPONSIVE NAVBAR CSS WITH MOBILE DROPDOWN MENU */
-
+/* RESPONSIVE NAVBAR CSS WITH MOBILE DROPDOWN MENU */
 
 /* Base Reset */
 * {
@@ -20,9 +18,7 @@
   --transition-elastic: cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-
-   /* MOTION & ANIMATION KEYFRAMES */
-
+/* MOTION & ANIMATION KEYFRAMES */
 
 /* Navbar slide-down entrance animation */
 @keyframes navbarSlideDown {
@@ -50,13 +46,16 @@
 
 /* Glow pulse effect */
 @keyframes glowPulse {
-  0%, 100% {
-    box-shadow: 0 0 5px rgba(0, 243, 255, 0.3),
-                0 0 10px rgba(176, 38, 255, 0.2);
+  0%,
+  100% {
+    box-shadow:
+      0 0 5px rgba(0, 243, 255, 0.3),
+      0 0 10px rgba(176, 38, 255, 0.2);
   }
   50% {
-    box-shadow: 0 0 15px rgba(0, 243, 255, 0.5),
-                0 0 25px rgba(176, 38, 255, 0.4);
+    box-shadow:
+      0 0 15px rgba(0, 243, 255, 0.5),
+      0 0 25px rgba(176, 38, 255, 0.4);
   }
 }
 
@@ -72,7 +71,8 @@
 
 /* Floating animation */
 @keyframes float {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0px);
   }
   50% {
@@ -82,7 +82,8 @@
 
 /* Border gradient animation */
 @keyframes borderGlow {
-  0%, 100% {
+  0%,
+  100% {
     border-color: rgba(0, 243, 255, 0.3);
   }
   50% {
@@ -104,7 +105,8 @@
 
 /* Text gradient animation */
 @keyframes gradientShift {
-  0%, 100% {
+  0%,
+  100% {
     background-position: 0% 50%;
   }
   50% {
@@ -133,17 +135,19 @@
 
 /* Subtle border glow animation on navbar */
 .navbar::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
   height: 1px;
-  background: linear-gradient(90deg, 
-    transparent, 
-    rgba(0, 243, 255, 0.5), 
-    rgba(176, 38, 255, 0.5), 
-    transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(0, 243, 255, 0.5),
+    rgba(176, 38, 255, 0.5),
+    transparent
+  );
   opacity: 0;
   transition: opacity 0.4s ease;
 }
@@ -192,7 +196,6 @@
   }
 }
 
-
 /* Logo/Brand */
 .navbar-logo {
   display: flex;
@@ -215,12 +218,14 @@
 
 .navbar-logo:hover {
   transform: translateY(-3px) scale(1.02);
-  animation: gradientShift 2s ease infinite, float 2s ease-in-out infinite;
+  animation:
+    gradientShift 2s ease infinite,
+    float 2s ease-in-out infinite;
   filter: drop-shadow(0 0 8px rgba(0, 243, 255, 0.4));
 }
 
 .navbar-logo::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 0;
   left: 0;
@@ -239,10 +244,12 @@
   width: 44px;
   height: 44px;
   border-radius: 12px;
-  background: linear-gradient(135deg, 
-    rgba(176, 38, 255, 0.2) 0%, 
+  background: linear-gradient(
+    135deg,
+    rgba(176, 38, 255, 0.2) 0%,
     rgba(0, 243, 255, 0.15) 50%,
-    rgba(176, 38, 255, 0.1) 100%);
+    rgba(176, 38, 255, 0.1) 100%
+  );
   border: 1.5px solid rgba(176, 38, 255, 0.3);
   display: flex;
   align-items: center;
@@ -253,23 +260,26 @@
 }
 
 .navbar-logo-icon::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, 
-    transparent, 
-    rgba(255, 255, 255, 0.1), 
-    transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
   transition: left 0.6s var(--transition-smooth);
 }
 
 .navbar-logo:hover .navbar-logo-icon {
   border-color: rgba(0, 243, 255, 0.6);
-  box-shadow: 0 8px 32px rgba(0, 243, 255, 0.25),
-              0 0 0 1px rgba(176, 38, 255, 0.2);
+  box-shadow:
+    0 8px 32px rgba(0, 243, 255, 0.25),
+    0 0 0 1px rgba(176, 38, 255, 0.2);
   transform: rotate(5deg) scale(1.05);
 }
 
@@ -282,14 +292,14 @@
   height: 70%;
   object-fit: contain;
   filter: drop-shadow(0 0 6px rgba(0, 243, 255, 0.8))
-          drop-shadow(0 0 12px rgba(176, 38, 255, 0.4));
+    drop-shadow(0 0 12px rgba(176, 38, 255, 0.4));
   transition: all 0.4s var(--transition-smooth);
 }
 
 .navbar-logo:hover .logo-img {
   transform: scale(1.1);
   filter: drop-shadow(0 0 8px rgba(0, 243, 255, 1))
-          drop-shadow(0 0 16px rgba(176, 38, 255, 0.6));
+    drop-shadow(0 0 16px rgba(176, 38, 255, 0.6));
 }
 
 /* Desktop Navigation Menu */
@@ -355,15 +365,17 @@
 }
 
 .navbar-link::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, 
-    rgba(176, 38, 255, 0.1) 0%, 
-    rgba(0, 243, 255, 0.05) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(176, 38, 255, 0.1) 0%,
+    rgba(0, 243, 255, 0.05) 100%
+  );
   border-radius: 10px;
   transform: scaleX(0);
   transform-origin: right;
@@ -374,8 +386,9 @@
 .navbar-link:hover {
   color: #ffffff;
   transform: translateY(-3px) scale(1.05);
-  text-shadow: 0 0 10px rgba(0, 243, 255, 0.5),
-                0 0 20px rgba(176, 38, 255, 0.3);
+  text-shadow:
+    0 0 10px rgba(0, 243, 255, 0.5),
+    0 0 20px rgba(176, 38, 255, 0.3);
 }
 
 .navbar-item:hover .navbar-link {
@@ -410,7 +423,7 @@
 }
 
 .navbar-link::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 2px;
   left: 50%;
@@ -444,22 +457,39 @@
 }
 
 /* Staggered animation for nav items */
-.navbar-item:nth-child(1) { animation: navItemFadeIn 0.5s var(--transition-smooth) 0.15s both; }
-.navbar-item:nth-child(2) { animation: navItemFadeIn 0.5s var(--transition-smooth) 0.2s both; }
-.navbar-item:nth-child(3) { animation: navItemFadeIn 0.5s var(--transition-smooth) 0.25s both; }
-.navbar-item:nth-child(4) { animation: navItemFadeIn 0.5s var(--transition-smooth) 0.3s both; }
-.navbar-item:nth-child(5) { animation: navItemFadeIn 0.5s var(--transition-smooth) 0.35s both; }
-.navbar-item:nth-child(6) { animation: navItemFadeIn 0.5s var(--transition-smooth) 0.4s both; }
-.navbar-item:nth-child(7) { animation: navItemFadeIn 0.5s var(--transition-smooth) 0.45s both; }
+.navbar-item:nth-child(1) {
+  animation: navItemFadeIn 0.5s var(--transition-smooth) 0.15s both;
+}
+.navbar-item:nth-child(2) {
+  animation: navItemFadeIn 0.5s var(--transition-smooth) 0.2s both;
+}
+.navbar-item:nth-child(3) {
+  animation: navItemFadeIn 0.5s var(--transition-smooth) 0.25s both;
+}
+.navbar-item:nth-child(4) {
+  animation: navItemFadeIn 0.5s var(--transition-smooth) 0.3s both;
+}
+.navbar-item:nth-child(5) {
+  animation: navItemFadeIn 0.5s var(--transition-smooth) 0.35s both;
+}
+.navbar-item:nth-child(6) {
+  animation: navItemFadeIn 0.5s var(--transition-smooth) 0.4s both;
+}
+.navbar-item:nth-child(7) {
+  animation: navItemFadeIn 0.5s var(--transition-smooth) 0.45s both;
+}
 
 .navbar-link.active {
   color: #ffffff;
   font-weight: 600;
-  background: linear-gradient(135deg, 
-    rgba(176, 38, 255, 0.15) 0%, 
-    rgba(0, 243, 255, 0.1) 100%);
-  box-shadow: 0 4px 20px rgba(176, 38, 255, 0.15),
-              inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  background: linear-gradient(
+    135deg,
+    rgba(176, 38, 255, 0.15) 0%,
+    rgba(0, 243, 255, 0.1) 100%
+  );
+  box-shadow:
+    0 4px 20px rgba(176, 38, 255, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
   animation: borderGlow 3s ease infinite;
   border: 1px solid rgba(0, 243, 255, 0.2);
 }
@@ -511,7 +541,7 @@
 }
 
 .navbar-btn::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -539,22 +569,24 @@
 }
 
 .navbar-btn-login::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, 
-    transparent, 
-    rgba(255, 255, 255, 0.2), 
-    transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
   transition: left 0.5s var(--transition-smooth);
 }
 
 /* Ripple container for login button */
 .navbar-btn-login::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 50%;
   left: 50%;
@@ -563,15 +595,18 @@
   background: rgba(255, 255, 255, 0.15);
   border-radius: 50%;
   transform: translate(-50%, -50%);
-  transition: width 0.6s ease, height 0.6s ease;
+  transition:
+    width 0.6s ease,
+    height 0.6s ease;
 }
 
 .navbar-btn-login:hover {
   background: rgba(255, 255, 255, 0.08);
   border-color: rgba(0, 243, 255, 0.5);
   transform: translateY(-3px) scale(1.03);
-  box-shadow: 0 8px 32px rgba(0, 243, 255, 0.15),
-              0 0 0 1px rgba(0, 243, 255, 0.1);
+  box-shadow:
+    0 8px 32px rgba(0, 243, 255, 0.15),
+    0 0 0 1px rgba(0, 243, 255, 0.1);
   color: #00f3ff;
   text-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
 }
@@ -596,8 +631,9 @@
   color: #000000;
   padding: 0.75rem 2rem;
   font-weight: 700;
-  box-shadow: 0 4px 20px rgba(0, 243, 255, 0.3),
-              0 0 0 1px rgba(176, 38, 255, 0.2);
+  box-shadow:
+    0 4px 20px rgba(0, 243, 255, 0.3),
+    0 0 0 1px rgba(176, 38, 255, 0.2);
   animation: navItemFadeIn 0.5s var(--transition-smooth) 0.5s both;
   transition: all 0.3s var(--transition-elastic);
   position: relative;
@@ -605,7 +641,7 @@
 }
 
 .navbar-btn-signup::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -621,10 +657,11 @@
 
 .navbar-btn-signup:hover {
   transform: translateY(-4px) scale(1.05);
-  box-shadow: 0 15px 45px rgba(0, 243, 255, 0.5),
-              0 0 0 2px rgba(176, 38, 255, 0.4),
-              0 0 40px rgba(176, 38, 255, 0.3),
-              0 0 60px rgba(0, 243, 255, 0.2);
+  box-shadow:
+    0 15px 45px rgba(0, 243, 255, 0.5),
+    0 0 0 2px rgba(176, 38, 255, 0.4),
+    0 0 40px rgba(176, 38, 255, 0.3),
+    0 0 60px rgba(0, 243, 255, 0.2);
   animation: shimmer 1.5s linear infinite;
   color: #ffffff;
   text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
@@ -637,8 +674,9 @@
 
 .navbar-btn-signup:active {
   transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 8px 25px rgba(0, 243, 255, 0.4),
-              0 0 0 1px rgba(176, 38, 255, 0.3);
+  box-shadow:
+    0 8px 25px rgba(0, 243, 255, 0.4),
+    0 0 0 1px rgba(176, 38, 255, 0.3);
 }
 
 /* User Menu */
@@ -659,16 +697,18 @@
 }
 
 .user-menu::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: -100%;
   width: 50%;
   height: 100%;
-  background: linear-gradient(90deg, 
-    transparent, 
-    rgba(255, 255, 255, 0.05), 
-    transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.05),
+    transparent
+  );
   transition: left 0.8s var(--transition-smooth);
 }
 
@@ -676,8 +716,9 @@
   background: rgba(255, 255, 255, 0.08);
   border-color: rgba(0, 243, 255, 0.3);
   transform: translateY(-2px);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3),
-              0 0 0 1px rgba(0, 243, 255, 0.1);
+  box-shadow:
+    0 12px 32px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(0, 243, 255, 0.1);
 }
 
 .user-menu:hover::before {
@@ -713,7 +754,7 @@
 }
 
 .icon-btn::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -745,9 +786,11 @@
   border-radius: 10px;
   font-size: 0.85rem;
   font-weight: 600;
-  background: linear-gradient(135deg, 
-    rgba(239, 68, 68, 0.15) 0%, 
-    rgba(239, 68, 68, 0.1) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(239, 68, 68, 0.15) 0%,
+    rgba(239, 68, 68, 0.1) 100%
+  );
   border: 1.5px solid rgba(239, 68, 68, 0.25);
   color: #ef4444;
   cursor: pointer;
@@ -759,27 +802,32 @@
 }
 
 .logout-btn::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, 
-    transparent, 
-    rgba(239, 68, 68, 0.1), 
-    transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(239, 68, 68, 0.1),
+    transparent
+  );
   transition: left 0.6s var(--transition-smooth);
 }
 
 .logout-btn:hover {
-  background: linear-gradient(135deg, 
-    rgba(239, 68, 68, 0.25) 0%, 
-    rgba(239, 68, 68, 0.2) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(239, 68, 68, 0.25) 0%,
+    rgba(239, 68, 68, 0.2) 100%
+  );
   border-color: rgba(239, 68, 68, 0.6);
   transform: translateY(-3px) scale(1.03);
-  box-shadow: 0 10px 25px rgba(239, 68, 68, 0.25),
-              0 0 20px rgba(239, 68, 68, 0.15);
+  box-shadow:
+    0 10px 25px rgba(239, 68, 68, 0.25),
+    0 0 20px rgba(239, 68, 68, 0.15);
   text-shadow: 0 0 8px rgba(239, 68, 68, 0.5);
 }
 
@@ -1451,11 +1499,11 @@
   .desktop-only {
     display: flex;
   }
-  
+
   .mobile-only {
     display: none;
   }
-  
+
   .mobile-menu {
     display: none !important;
   }
@@ -1483,22 +1531,22 @@
   .mobile-only {
     display: flex;
   }
-  
+
   .desktop-only {
     display: none !important;
   }
-  
+
   .navbar-toggle {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
   }
-  
+
   .navbar-menu {
     display: none;
   }
-  
+
   .desktop-auth {
     display: flex !important;
   }
@@ -1633,7 +1681,7 @@
   .navbar-toggle {
     display: none;
   }
-  
+
   .navbar-menu {
     display: flex !important;
     gap: 0.5rem;
@@ -1667,11 +1715,11 @@
     padding: 0.6rem 1.1rem;
     font-size: 0.85rem;
   }
-  
+
   .navbar-btn-login {
     padding: 0.6rem 1.3rem;
   }
-  
+
   .navbar-btn-signup {
     padding: 0.6rem 1.5rem;
   }
@@ -1725,11 +1773,11 @@
     padding: 0.75rem 1.5rem;
     font-size: 0.95rem;
   }
-  
+
   .navbar-btn-login {
     padding: 0.75rem 1.75rem;
   }
-  
+
   .navbar-btn-signup {
     padding: 0.75rem 2rem;
   }
@@ -1772,7 +1820,7 @@
 }
 
 .dropdown-trigger::after {
-  content: '▼';
+  content: "▼";
   font-size: 0.65rem;
   transition: transform 0.3s var(--transition-smooth);
   color: rgba(255, 255, 255, 0.6);
@@ -1784,9 +1832,11 @@
 
 .navbar-item:hover .dropdown-trigger {
   color: #ffffff;
-  background: linear-gradient(135deg, 
-    rgba(176, 38, 255, 0.1) 0%, 
-    rgba(0, 243, 255, 0.05) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(176, 38, 255, 0.1) 0%,
+    rgba(0, 243, 255, 0.05) 100%
+  );
 }
 
 .dropdown-menu {
@@ -1805,12 +1855,14 @@
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  transition: opacity 0.3s var(--transition-smooth),
-              transform 0.3s var(--transition-smooth),
-              visibility 0.3s;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5),
-              0 0 20px rgba(176, 38, 255, 0.15),
-              inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition:
+    opacity 0.3s var(--transition-smooth),
+    transform 0.3s var(--transition-smooth),
+    visibility 0.3s;
+  box-shadow:
+    0 10px 40px rgba(0, 0, 0, 0.5),
+    0 0 20px rgba(176, 38, 255, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 .navbar-item:hover .dropdown-menu {
@@ -1828,7 +1880,7 @@
 }
 
 .dropdown-menu::before {
-  content: '';
+  content: "";
   position: absolute;
   top: -6px;
   left: 50%;
@@ -1867,13 +1919,17 @@
 }
 
 .dropdown-link::before {
-  content: '';
+  content: "";
   position: absolute;
   left: 0;
   top: 0;
   width: 3px;
   height: 100%;
-  background: linear-gradient(180deg, var(--secondary-color), var(--primary-color));
+  background: linear-gradient(
+    180deg,
+    var(--secondary-color),
+    var(--primary-color)
+  );
   transform: scaleY(0);
   transition: transform 0.3s var(--transition-smooth);
   border-radius: 0 3px 3px 0;
@@ -1950,7 +2006,7 @@
   }
 
   .dropdown-trigger::after {
-    content: '▼';
+    content: "▼";
     font-size: 0.7rem;
     margin-left: auto;
     transition: transform 0.3s var(--transition-smooth);
@@ -2002,4 +2058,3 @@
     padding-left: 1.5rem;
   }
 }
-

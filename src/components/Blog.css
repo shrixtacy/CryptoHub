@@ -1163,7 +1163,8 @@
   font-size: 1.1rem;
 }
 
-.action-btn:hover {
+.action-btn:hover,
+.action-btn.active {
   background: rgba(69, 89, 220, 0.2);
   border-color: #4559DC;
   color: #4559DC;

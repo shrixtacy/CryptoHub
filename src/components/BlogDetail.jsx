@@ -1,5 +1,7 @@
+import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import { toast } from "react-hot-toast";
 import {
   FiArrowLeft,
   FiUser,
@@ -12,20 +14,43 @@ import {
 } from "react-icons/fi";
 import "./Blog.css";
 import { generateBlogPosts } from "../data/blogData";
+import { useAuth } from "../context/AuthContext";
+import { toggleBookmark, getBookmarks } from "../services/bookmarkService";
 
 const BlogDetail = () => {
   const { id, slug } = useParams();
   const navigate = useNavigate();
   const blogPosts = generateBlogPosts();
+  const { currentUser } = useAuth();
+
+  // State for interactions
+  const [isBookmarked, setIsBookmarked] = useState(false);
+  const [_loadingBookmark, setLoadingBookmark] = useState(true);
 
   // 🔒 SAFELY find blog - handle both slug and id params
-  // The route /blog/:slug will put the value in 'slug' even if it's a number
   const blogId = id || slug;
-  const blog = blogPosts.find((post) => 
+  const blog = blogPosts.find((post) =>
     post.id === Number(blogId) || post.slug === blogId
   );
 
-  // ✅ Early return → removes ALL "possibly undefined" warnings
+  // Check if bookmarked on load
+  useEffect(() => {
+    const checkBookmarkStatus = async () => {
+      if (currentUser && blog) {
+        try {
+          const bookmarks = await getBookmarks(currentUser.uid);
+          setIsBookmarked(bookmarks.includes(blog.id));
+        } catch (error) {
+          console.error("Error fetching bookmarks:", error);
+        }
+      }
+      setLoadingBookmark(false);
+    };
+
+    checkBookmarkStatus();
+  }, [currentUser, blog]);
+
+  // ✅ Early return
   if (!blog) {
     return (
       <div className="blog-detail-error">
@@ -40,7 +65,7 @@ const BlogDetail = () => {
     );
   }
 
-  // ✅ Normalized content (no undefined access anywhere)
+  // ✅ Normalized content
   const content = {
     toc: blog.content?.toc ?? [
       "Introduction",
@@ -66,6 +91,53 @@ const BlogDetail = () => {
 
   // Demo views
   const views = Math.floor(Math.random() * 2000) + 500;
+
+  // Handlers
+  // Handlers
+  const handleBookmark = async () => {
+    if (!currentUser) {
+      toast.error("Please login to bookmark articles");
+      navigate("/login");
+      return;
+    }
+
+    try {
+      const isNowBookmarked = await toggleBookmark(currentUser.uid, blog.id);
+      setIsBookmarked(isNowBookmarked);
+
+      if (isNowBookmarked) {
+        toast.success("Article saved to bookmarks");
+      } else {
+        toast.success("Article removed from bookmarks");
+      }
+    } catch (error) {
+      console.error("Error toggling bookmark:", error);
+      toast.error("Failed to update bookmark");
+    }
+  };
+
+  const handleShare = async () => {
+    const shareData = {
+      title: blog.title,
+      text: blog.excerpt,
+      url: window.location.href,
+    };
+
+    if (navigator.share) {
+      try {
+        await navigator.share(shareData);
+      } catch (err) {
+        console.error("Error sharing:", err);
+      }
+    } else {
+      navigator.clipboard.writeText(window.location.href);
+      toast.success("Link copied to clipboard!");
+    }
+  };
+
+  const handleOpenNewTab = () => {
+    window.open(window.location.href, "_blank");
+  };
 
   return (
     <div className="blog-detail-page">
@@ -163,9 +235,22 @@ const BlogDetail = () => {
 
         {/* Floating Actions */}
         <div className="floating-actions">
-          <Action icon={<FiBookmark />} title="Bookmark" />
-          <Action icon={<FiShare2 />} title="Share" />
-          <Action icon={<FiExternalLink />} title="Open in new tab" />
+          <Action
+            icon={<FiBookmark fill={isBookmarked ? "currentColor" : "none"} />}
+            title={isBookmarked ? "Remove Bookmark" : "Bookmark"}
+            onClick={handleBookmark}
+            active={isBookmarked}
+          />
+          <Action
+            icon={<FiShare2 />}
+            title="Share"
+            onClick={handleShare}
+          />
+          <Action
+            icon={<FiExternalLink />}
+            title="Open in new tab"
+            onClick={handleOpenNewTab}
+          />
         </div>
       </div>
     </div>
@@ -184,12 +269,13 @@ const Meta = ({ icon, label, value }) => (
   </div>
 );
 
-const Action = ({ icon, title }) => (
+const Action = ({ icon, title, onClick, active }) => (
   <motion.button
-    className="action-btn"
+    className={`action-btn ${active ? "active" : ""}`}
     whileHover={{ scale: 1.1 }}
     whileTap={{ scale: 0.9 }}
     title={title}
+    onClick={onClick}
   >
     {icon}
   </motion.button>
