@@ -298,3 +298,116 @@ table tbody td:last-child {
 .dark table tbody td:first-child {
   color: #e2e8f0 !important;
 }
+/* =========================================================
+   PRICING PAGE — MASTER TEXT & GRAY UI CONTRAST FIX
+   Covers: FAQ, gray buttons, small text, glass panels, tables
+   ========================================================= */
+
+/* 1. ALL low-contrast gray text → stronger slate */
+.text-gray-300,
+.text-gray-400,
+.text-gray-500,
+.text-gray-600,
+.text-gray-700 {
+  color: #334155 !important;  /* slate-700 */
+}
+
+/* Dark mode: force bright readable text */
+.dark .text-gray-300,
+.dark .text-gray-400,
+.dark .text-gray-500,
+.dark .text-gray-600,
+.dark .text-gray-700 {
+  color: #e5e7eb !important;  /* slate-200 */
+}
+
+/* 2. Glass panel text (cards, FAQ, modals, etc) */
+.glass-panel,
+.glass-panel p,
+.glass-panel span,
+.glass-panel div,
+.glass-panel li,
+.glass-panel h1,
+.glass-panel h2,
+.glass-panel h3,
+.glass-panel h4,
+.glass-panel h5 {
+  color: #1f2937 !important;  /* slate-800 */
+}
+
+.dark .glass-panel,
+.dark .glass-panel p,
+.dark .glass-panel span,
+.dark .glass-panel div,
+.dark .glass-panel li,
+.dark .glass-panel h1,
+.dark .glass-panel h2,
+.dark .glass-panel h3,
+.dark .glass-panel h4,
+.dark .glass-panel h5 {
+  color: #f1f5f9 !important;  /* slate-100 */
+}
+
+/* 3. FAQ section specific (questions + answers) */
+.glass-panel button,
+.glass-panel button h4,
+.glass-panel .px-10.pb-8 {
+  color: #0f172a !important;  /* slate-900 */
+}
+
+.dark .glass-panel button,
+.dark .glass-panel button h4,
+.dark .glass-panel .px-10.pb-8 {
+  color: #f8fafc !important;  /* near white */
+}
+
+/* 4. Gray buttons (Explorer, Close, neutral CTAs) */
+.bg-gray-700,
+.bg-gray-600,
+.bg-gray-500,
+.from-gray-500,
+.to-gray-600 {
+  color: #ffffff !important;
+  background-color: #334155 !important; /* slate-700 */
+  border-color: #475569 !important;
+}
+
+.dark .bg-gray-700,
+.dark .bg-gray-600,
+.dark .bg-gray-500,
+.dark .from-gray-500,
+.dark .to-gray-600 {
+  background-color: #1e293b !important; /* slate-900 */
+  color: #ffffff !important;
+  border-color: #334155 !important;
+}
+
+/* 5. Comparison table small labels & cells */
+table td,
+table th,
+table td span {
+  color: #1f2937 !important;
+}
+
+.dark table td,
+.dark table th,
+.dark table td span {
+  color: #e5e7eb !important;
+}
+
+/* 6. Small muted UI labels */
+.text-sm,
+.text-xs {
+  color: #334155;
+}
+
+.dark .text-sm,
+.dark .text-xs {
+  color: #cbd5f5;
+}
+
+/* 7. Improve overall text rendering */
+body {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
