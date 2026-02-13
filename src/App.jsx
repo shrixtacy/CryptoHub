@@ -17,6 +17,7 @@ import MarketOverview from "@/pages/Dashboard/MarketOverview";
 import Leaderboard from "@/components/Leaderboard";
 import ChangePassword from "@/components/ChangePassword";
 import SavedInsights from "@/pages/SavedInsights";
+import Profile from "@/pages/Dashboard/Profile";
 import ForgotPassword from "@/components/ForgotPassword";
 import PrivateRoute from "@/components/PrivateRoute";
 import { AuthProvider } from "@/context/AuthContext";
@@ -147,6 +148,7 @@ const App = () => {
                   <Route path="/leaderboard" element={<Leaderboard />} />
                   <Route path="/change-password" element={<ChangePassword />} />
                   <Route path="/saved-insights" element={<SavedInsights />} />
+                  <Route path="/profile" element={<Profile />} />
                 </Route>
 
                 {/* Coin route - accessible to all but shows sidebar if logged in */}
