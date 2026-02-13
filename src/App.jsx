@@ -10,6 +10,7 @@ import Blog from "@/components/Blog";
 import Features from "@/components/Features";
 import Signup from "@/components/Signup";
 import Login from "@/components/Login";
+import EmailVerification from "@/components/EmailVerification";
 import BlogDetail from "@/components/BlogDetail";
 import DashboardLayout from "@/pages/Dashboard/DashboardLayout";
 import DashboardContent from "@/pages/Dashboard/DashboardContent";
@@ -73,7 +74,7 @@ const App = () => {
     location.pathname === "/change-password" ||
     location.pathname === "/saved-insights";
 
-  const authRoutes = ["/login", "/signup", "/forgot-password"];
+  const authRoutes = ["/login", "/signup", "/forgot-password", "/verify-email"];
   const isAuthPage = authRoutes.includes(location.pathname);
 
   useEffect(() => {
@@ -133,6 +134,14 @@ const App = () => {
                 <Route path="/signup" element={<Signup />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/forgot-password" element={<ForgotPassword />} />
+                <Route 
+                  path="/verify-email" 
+                  element={
+                    <PrivateRoute>
+                      <EmailVerification />
+                    </PrivateRoute>
+                  } 
+                />
                 <Route path="/contributors" element={<Contributors />} />
 
                 {/* Dashboard Layout with nested routes - all share the same sidebar */}

@@ -84,8 +84,8 @@ function Signup() {
 
       try {
         await signup(formData.email, formData.password, formData.fullName);
-          notifySuccess("Signed up successfully");
-       setTimeout(() => navigate("/dashboard"), 1500);
+        notifySuccess("Account created! Please check your email to verify your account.");
+        setTimeout(() => navigate("/verify-email"), 1500);
       } catch (error) {
         console.error("Signup error:", error);
 

@@ -68,7 +68,7 @@ function Navbar() {
       }
     };
 
-    const handleEscapeKey = (event) => {
+    const handleEscape = (event) => {
       if (event.key === 'Escape') {
         if (openDropdown) setOpenDropdown(null);
         if (isProfileOpen) setIsProfileOpen(false);
@@ -108,8 +108,6 @@ function Navbar() {
     { to: "/dashboard", label: "Dashboard" },
     { to: "/leaderboard", label: "Leaderboard" },
   ];
-
-  const linksToRender = currentUser ? authenticatedNavLinks : navLinks;
 
   /* -------------------- JSX -------------------- */
 

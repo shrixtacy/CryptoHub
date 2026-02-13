@@ -63,7 +63,16 @@ function Login() {
       setErrors({});
 
       try {
-        await login(formData.email, formData.password);
+        const userCredential = await login(formData.email, formData.password);
+        const user = userCredential.user;
+        
+        // Check if email is verified
+        if (!user.emailVerified) {
+          notifyInfo("Please verify your email address to continue.");
+          setTimeout(() => navigate("/verify-email"), 1500);
+          return;
+        }
+        
         notifySuccess("Logged in successfully");
         setTimeout(() => navigate("/dashboard"), 1500);
       } catch (error) {
