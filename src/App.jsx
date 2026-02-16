@@ -41,6 +41,7 @@ import About from "./components/About";
 import CryptoChatbot from "./CryptoChatbot/CryptoChatbot";
 import Feedback from "./pages/Feedback";
 import TrendingCoins from "@/pages/TrendingCoins";
+import NewListings from "@/pages/NewListings";
 
 
 const App = () => {
@@ -134,6 +135,7 @@ const App = () => {
                 <Route path="/blog/:slug" element={<BlogDetail />} />
                 <Route path="/blog/article/:id" element={<BlogDetail />} />
                 <Route path="/trending" element={<TrendingCoins />} />
+                <Route path="/new-listings" element={<NewListings />} />
 
                 <Route path="/features" element={<Features />} />
                 <Route path="/signup" element={<Signup />} />

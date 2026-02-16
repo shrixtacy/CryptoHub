@@ -92,6 +92,7 @@ function Navbar() {
     { to: "/pricing", label: "Pricing" },
     { to: "/blog", label: "Insights" },
     { to: "/features", label: "Features" },
+    { to: "/new-listings", label: "New Listings" },
     {
       label: "More",
       dropdown: [
